@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="lt">
 <head>
@@ -9,12 +8,15 @@
 
 <style>
 :root {
-    --purple: #68418c;
-    --dark-purple: #38234b;
-    --light-purple: #f0e8f7;
-    --background: #faf8fc;
-    --text: #302b35;
-    --muted: #655d6c;
+    --pink: #d94f86;
+    --pink-dark: #9f315f;
+    --pink-deep: #67213f;
+    --pink-light: #fde8f0;
+    --pink-soft: #fff4f8;
+    --pink-border: #f3cad9;
+    --background: #fff9fb;
+    --text: #352b30;
+    --muted: #71636a;
     --white: #ffffff;
 }
 
@@ -36,13 +38,16 @@ body {
     line-height: 1.8;
 }
 
+/* NAVIGACIJA */
+
 nav {
     position: sticky;
     top: 0;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.97);
-    border-bottom: 1px solid #e9e0ef;
+    z-index: 1000;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--pink-border);
     padding: 16px 5%;
+    box-shadow: 0 3px 18px rgba(140, 50, 90, 0.06);
 }
 
 .nav-inner {
@@ -55,7 +60,7 @@ nav {
 }
 
 .logo {
-    color: var(--purple);
+    color: var(--pink-dark);
     font-weight: bold;
     font-size: 18px;
 }
@@ -75,16 +80,18 @@ nav a {
 }
 
 nav a:hover {
-    color: var(--purple);
+    color: var(--pink);
 }
 
+/* PAGRINDINIS */
+
 .hero {
-    padding: 105px 24px;
+    padding: 110px 24px;
     text-align: center;
     background:
-        radial-gradient(ellipse at top left, #e8d8f4, transparent 55%),
-        radial-gradient(ellipse at bottom right, #ded0ee, transparent 55%),
-        #f7f2fa;
+        radial-gradient(ellipse at top left, #ffdbe8, transparent 55%),
+        radial-gradient(ellipse at bottom right, #f8cddd, transparent 55%),
+        #fff5f8;
 }
 
 .hero-inner {
@@ -93,7 +100,7 @@ nav a:hover {
 }
 
 .eyebrow {
-    color: var(--purple);
+    color: var(--pink);
     font-size: 13px;
     font-weight: bold;
     letter-spacing: 3px;
@@ -102,7 +109,7 @@ nav a:hover {
 }
 
 .hero h1 {
-    color: var(--dark-purple);
+    color: var(--pink-deep);
     font-size: clamp(34px, 5vw, 58px);
     line-height: 1.18;
     margin-bottom: 26px;
@@ -118,17 +125,24 @@ nav a:hover {
 .button {
     display: inline-block;
     margin-top: 32px;
-    padding: 13px 25px;
-    background: var(--purple);
+    padding: 14px 28px;
+    background: var(--pink);
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
 }
 
 .button:hover {
-    background: var(--dark-purple);
+    background: var(--pink-dark);
+    transform: translateY(-2px);
 }
+
+/* BENDRAS TURINYS */
 
 section {
     max-width: 1050px;
@@ -137,7 +151,7 @@ section {
 }
 
 .section-label {
-    color: var(--purple);
+    color: var(--pink);
     font-size: 13px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -147,7 +161,7 @@ section {
 }
 
 h2 {
-    color: var(--dark-purple);
+    color: var(--pink-deep);
     font-size: clamp(28px, 4vw, 38px);
     line-height: 1.3;
     text-align: center;
@@ -155,7 +169,7 @@ h2 {
 }
 
 h3 {
-    color: var(--purple);
+    color: var(--pink-dark);
     font-size: 22px;
     line-height: 1.4;
     margin-bottom: 15px;
@@ -171,11 +185,11 @@ h3 {
 
 .panel {
     background: var(--white);
-    border: 1px solid #eee7f2;
-    border-radius: 14px;
+    border: 1px solid #f4dce5;
+    border-radius: 16px;
     padding: 30px;
     margin: 22px 0;
-    box-shadow: 0 7px 24px rgba(60, 35, 80, 0.045);
+    box-shadow: 0 8px 25px rgba(130, 45, 80, 0.06);
 }
 
 .panel p + p {
@@ -191,10 +205,16 @@ h3 {
 
 .card {
     background: white;
-    border: 1px solid #eee7f2;
-    border-radius: 14px;
+    border: 1px solid #f4dce5;
+    border-radius: 16px;
     padding: 27px;
-    box-shadow: 0 7px 24px rgba(60, 35, 80, 0.045);
+    box-shadow: 0 8px 25px rgba(130, 45, 80, 0.06);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(130, 45, 80, 0.10);
 }
 
 .card p + p {
@@ -205,7 +225,7 @@ h3 {
     grid-column: 1 / -1;
 }
 
-ul.content-list {
+.content-list {
     padding-left: 25px;
     margin-top: 12px;
 }
@@ -216,16 +236,18 @@ ul.content-list {
 }
 
 .note {
-    background: var(--light-purple);
-    border-left: 4px solid var(--purple);
-    border-radius: 8px;
+    background: var(--pink-light);
+    border-left: 4px solid var(--pink);
+    border-radius: 10px;
     padding: 23px 25px;
     margin-top: 25px;
 }
 
 .note strong {
-    color: var(--dark-purple);
+    color: var(--pink-deep);
 }
+
+/* CIKLAS */
 
 .cycle {
     display: flex;
@@ -237,9 +259,9 @@ ul.content-list {
 }
 
 .cycle-step {
-    background: var(--light-purple);
-    color: var(--dark-purple);
-    border: 1px solid #e2d3ef;
+    background: var(--pink-light);
+    color: var(--pink-deep);
+    border: 1px solid var(--pink-border);
     border-radius: 10px;
     padding: 13px 15px;
     text-align: center;
@@ -248,41 +270,249 @@ ul.content-list {
 }
 
 .cycle-arrow {
-    color: var(--purple);
+    color: var(--pink);
     font-size: 23px;
     font-weight: bold;
 }
 
+/* TESTAS */
+
 .test-area {
     max-width: none;
-    background: var(--light-purple);
+    background: linear-gradient(180deg, #fff3f7, #fde7ef);
 }
 
 .test-inner {
-    max-width: 900px;
+    max-width: 850px;
     margin: auto;
     text-align: center;
 }
 
 .test-box {
     background: white;
-    border-radius: 14px;
-    padding: 38px 25px;
+    border-radius: 22px;
+    padding: 45px;
     margin-top: 28px;
+    box-shadow: 0 15px 45px rgba(135, 45, 80, 0.10);
+    border: 1px solid #f4d7e2;
 }
 
+.test-info {
+    color: var(--muted);
+    margin: 15px auto;
+    max-width: 650px;
+}
+
+.test-small {
+    font-size: 14px;
+    color: #88757e;
+    margin-top: 18px;
+}
+
+/* KLAUSIMAI */
+
+#quizScreen,
+#resultScreen {
+    display: none;
+}
+
+.question-number {
+    color: var(--pink);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.progress-container {
+    width: 100%;
+    height: 9px;
+    background: #f6dce5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 5%;
+    background: linear-gradient(90deg, #ef82a9, #cf447c);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.question-text {
+    color: var(--pink-deep);
+    font-size: 25px;
+    line-height: 1.45;
+    margin-bottom: 30px;
+}
+
+.answers {
+    display: grid;
+    gap: 12px;
+}
+
+.answer {
+    width: 100%;
+    background: white;
+    border: 2px solid var(--pink-border);
+    color: var(--text);
+    padding: 15px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.answer:hover {
+    border-color: var(--pink);
+    background: var(--pink-soft);
+}
+
+.answer.selected {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: white;
+    font-weight: bold;
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.nav-button {
+    border: none;
+    border-radius: 10px;
+    padding: 13px 22px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.back-button {
+    background: #f4e4ea;
+    color: var(--pink-dark);
+}
+
+.next-button {
+    background: var(--pink);
+    color: white;
+}
+
+.next-button:hover {
+    background: var(--pink-dark);
+}
+
+.next-button:disabled {
+    background: #d7c5cc;
+    cursor: not-allowed;
+}
+
+/* REZULTATAI */
+
+.result-title {
+    font-size: 32px;
+    color: var(--pink-deep);
+    margin-bottom: 15px;
+}
+
+.result-summary {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--pink-dark);
+    margin-bottom: 20px;
+}
+
+.result-description {
+    text-align: left;
+    margin: 20px 0 30px;
+}
+
+.advice-box {
+    text-align: left;
+    background: var(--pink-soft);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.advice-box h3 {
+    margin-bottom: 15px;
+}
+
+.advice-box ul {
+    padding-left: 22px;
+}
+
+.advice-box li {
+    margin-bottom: 10px;
+}
+
+.profile {
+    margin: 35px 0;
+    text-align: left;
+}
+
+.profile h3 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.profile-item {
+    margin-bottom: 22px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.profile-track {
+    width: 100%;
+    height: 12px;
+    background: #f4dce5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.profile-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ee8aae, #ce4279);
+    border-radius: 20px;
+}
+
+.disclaimer {
+    margin-top: 30px;
+    padding: 18px;
+    background: #faf5f7;
+    border-radius: 10px;
+    color: #75656c;
+    font-size: 13px;
+}
+
+/* FOOTER */
+
 footer {
-    background: var(--dark-purple);
-    color: #f5edf9;
+    background: var(--pink-deep);
+    color: #fff4f8;
     padding: 35px 20px;
     text-align: center;
 }
 
 footer p + p {
     margin-top: 7px;
-    color: #d9cbe5;
+    color: #f2cad9;
     font-size: 14px;
 }
+
+/* TELEFONAI */
 
 @media (max-width: 760px) {
     .nav-inner {
@@ -314,7 +544,8 @@ footer p + p {
         grid-column: auto;
     }
 
-    .panel, .card {
+    .panel,
+    .card {
         padding: 23px;
     }
 
@@ -329,6 +560,18 @@ footer p + p {
 
     .cycle-arrow {
         transform: rotate(90deg);
+    }
+
+    .test-box {
+        padding: 28px 18px;
+    }
+
+    .question-text {
+        font-size: 21px;
+    }
+
+    .profile-header {
+        font-size: 14px;
     }
 }
 </style>
@@ -370,12 +613,12 @@ footer p + p {
 <main>
 
 <section id="tikslas">
-    <p class="section-label">01 · Tyrimo pristatymas</p>
+    <p class="section-label">01 - Tyrimo pristatymas</p>
     <h2>Darbo tikslas</h2>
 
     <div class="panel">
         <p>
-            Šio darbo tikslas – praplėsti žmonių akiratį apie perfekcionizmą
+            Šio darbo tikslas - praplėsti žmonių akiratį apie perfekcionizmą
             ir prokrastinaciją, paaiškinti, kuo šie reiškiniai skiriasi ir kaip
             jie gali būti tarpusavyje susiję.
         </p>
@@ -389,11 +632,11 @@ footer p + p {
 </section>
 
 <section id="perfekcionizmas">
-    <p class="section-label">02 · Aukšti standartai</p>
+    <p class="section-label">02 - Aukšti standartai</p>
     <h2>Kas yra perfekcionizmas?</h2>
 
     <p class="section-intro">
-        Perfekcionizmas – asmenybės bruožas, kuriam būdingas siekis
+        Perfekcionizmas - asmenybės bruožas, kuriam būdingas siekis
         pasiekti labai aukštus standartus ir atlikti užduotis kuo geriau.
     </p>
 
@@ -441,7 +684,7 @@ footer p + p {
         </article>
     </div>
 
-    <h2 style="margin-top: 55px;">Perfekcionizmo rūšys pagal nukreiptumą</h2>
+    <h2 style="margin-top:55px;">Perfekcionizmo rūšys pagal nukreiptumą</h2>
 
     <div class="grid">
         <article class="card">
@@ -478,18 +721,18 @@ footer p + p {
     <div class="note">
         <strong>Svarbu paminėti:</strong>
         šios klasifikacijos nėra visiškai atskiros. Pavyzdžiui, į save
-        nukreiptas perfekcionizmas gali būti ir adaptyvus, ir maladaptacinis –
+        nukreiptas perfekcionizmas gali būti ir adaptyvus, ir maladaptacinis -
         tai priklauso nuo to, kaip žmogus reaguoja į savo klaidas ir nesėkmes.
     </div>
 </section>
 
 <section id="prokrastinacija">
-    <p class="section-label">03 · Užduočių atidėliojimas</p>
+    <p class="section-label">03 - Užduočių atidėliojimas</p>
     <h2>Kas yra prokrastinacija?</h2>
 
     <div class="panel">
         <p>
-            Prokrastinacija – svarbių ar suplanuotų užduočių atidėliojimas,
+            Prokrastinacija - svarbių ar suplanuotų užduočių atidėliojimas,
             nors žmogus žino, kad toks elgesys gali turėti neigiamų pasekmių.
         </p>
 
@@ -520,14 +763,14 @@ footer p + p {
         </ul>
 
         <div class="note">
-            Todėl kartais žmogus atidėlioja ne todėl, kad yra tingus,
+            Kartais žmogus atidėlioja ne todėl, kad yra tingus,
             o todėl, kad pati užduotis jam sukelia nemalonius jausmus.
         </div>
     </div>
 </section>
 
 <section id="rysys">
-    <p class="section-label">04 · Tarpusavio sąsajos</p>
+    <p class="section-label">04 - Tarpusavio sąsajos</p>
     <h2>Kaip perfekcionizmas ir prokrastinacija yra susiję?</h2>
 
     <div class="panel">
@@ -548,7 +791,7 @@ footer p + p {
     </div>
 
     <div class="panel">
-        <h3 style="text-align: center;">Galimas užburtas ratas</h3>
+        <h3 style="text-align:center;">Galimas užburtas ratas</h3>
 
         <div class="cycle">
             <div class="cycle-step">Labai aukšti reikalavimai</div>
@@ -574,7 +817,7 @@ footer p + p {
 </section>
 
 <section id="rezultatai">
-    <p class="section-label">05 · Mokymasis ir pažymiai</p>
+    <p class="section-label">05 - Mokymasis ir pažymiai</p>
     <h2>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</h2>
 
     <p class="section-intro">
@@ -629,7 +872,7 @@ footer p + p {
 </section>
 
 <section id="svarba">
-    <p class="section-label">06 · Temos aktualumas</p>
+    <p class="section-label">06 - Temos aktualumas</p>
     <h2>Kodėl svarbu apie tai kalbėti?</h2>
 
     <div class="panel">
@@ -637,7 +880,7 @@ footer p + p {
             Perfekcionizmas ir prokrastinacija yra reiškiniai, su kuriais
             gali susidurti įvairaus amžiaus žmonės, ypač mokiniai ir studentai.
             Iš pirmo žvilgsnio labai aukšti reikalavimai sau gali atrodyti
-            kaip privalumas, o atidėliojimas – tiesiog tingėjimas.
+            kaip privalumas, o atidėliojimas - tiesiog tingėjimas.
         </p>
 
         <p>
@@ -653,25 +896,97 @@ footer p + p {
     </div>
 </section>
 
+<!-- TESTAS -->
+
 <section class="test-area" id="testas">
-    <div class="test-inner">
-        <p class="section-label">07 · Interaktyvus testas</p>
-        <h2>Geriau pažink savo mokymosi įpročius</h2>
+<div class="test-inner">
 
-        <p class="section-intro">
-            Šioje svetainės dalyje bus galima atsakyti į klausimus,
-            susijusius su perfekcionizmu ir prokrastinacija.
-        </p>
+    <p class="section-label">07 - Interaktyvus testas</p>
+    <h2>Geriau pažink savo mokymosi įpročius</h2>
 
-        <div class="test-box">
-            <h3>Testas ruošiamas</h3>
-            <p>
-                Kai bus paruošti klausimai ir atsakymų variantai,
-                čia atsiras testas su automatiškai apskaičiuojamu
-                rezultatu ir rekomendacijomis.
+    <div class="test-box">
+
+        <!-- PRADŽIA -->
+
+        <div id="startScreen">
+            <h3>Atlik trumpą savęs vertinimo testą</h3>
+
+            <p class="test-info">
+                Atsakyk į 20 teiginių ir sužinok, kokios tendencijos labiausiai
+                atsispindi tavo atsakymuose.
+            </p>
+
+            <p class="test-info">
+                Teste vertinami aukšti standartai sau, kitų lūkesčių spaudimas,
+                aukšti reikalavimai kitiems ir polinkis atidėlioti užduotis.
+            </p>
+
+            <button class="button" onclick="startQuiz()">Pradėti testą</button>
+
+            <p class="test-small">
+                Atsakyk kuo nuoširdžiau. Čia nėra teisingų ar neteisingų atsakymų.
             </p>
         </div>
+
+        <!-- KLAUSIMAI -->
+
+        <div id="quizScreen">
+
+            <div class="question-number" id="questionNumber"></div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <h3 class="question-text" id="questionText"></h3>
+
+            <div class="answers" id="answers"></div>
+
+            <div class="quiz-navigation">
+                <button class="nav-button back-button" id="backButton" onclick="previousQuestion()">
+                    Atgal
+                </button>
+
+                <button class="nav-button next-button" id="nextButton" onclick="nextQuestion()" disabled>
+                    Kitas
+                </button>
+            </div>
+
+        </div>
+
+        <!-- REZULTATAS -->
+
+        <div id="resultScreen">
+
+            <p class="section-label">Tavo rezultatas</p>
+
+            <h2 class="result-title" id="resultTitle"></h2>
+
+            <p class="result-summary" id="resultSummary"></p>
+
+            <div class="result-description" id="resultDescription"></div>
+
+            <div class="advice-box">
+                <h3>Ką gali išbandyti?</h3>
+                <ul id="resultAdvice"></ul>
+            </div>
+
+            <div class="profile">
+                <h3>Tavo atsakymų profilis</h3>
+                <div id="profileResults"></div>
+            </div>
+
+            <button class="button" onclick="restartQuiz()">Atlikti testą dar kartą</button>
+
+            <div class="disclaimer">
+                Šis testas skirtas savirefleksijai ir edukaciniams tikslams.
+                Jis nėra diagnostinė psichologinė priemonė.
+            </div>
+
+        </div>
+
     </div>
+</div>
 </section>
 
 </main>
@@ -681,6 +996,527 @@ footer p + p {
     <p>Mokyklinis tyrimo projektas</p>
 </footer>
 
+<script>
+
+/* KLAUSIMAI */
+
+const questions = [
+    "Iš savęs reikalauju labai aukštų rezultatų.",
+    "Man sunku būti patenkintai savo darbu, jei žinau, kad galėjau jį atlikti geriau.",
+    "Man sunku priimti savo klaidas.",
+    "Net gavusi gerą rezultatą kartais jaučiu, kad jis nėra pakankamai geras.",
+    "Jaučiu, kad mano atliktas darbas turi būti beveik nepriekaištingas.",
+
+    "Jaučiu, kad kiti žmonės iš manęs tikisi labai gerų rezultatų.",
+    "Bijau nuvilti žmones, kurie iš manęs daug tikisi.",
+    "Kai suklystu, nerimauju dėl to, ką apie mane pagalvos kiti.",
+    "Jaučiu spaudimą atitikti kitų žmonių lūkesčius.",
+    "Man atrodo, kad turiu būti labai sėkminga, kad kiti mane vertintų.",
+
+    "Mane erzina, kai kiti žmonės neatlieka darbo taip gerai, kaip galėtų.",
+    "Iš kitų žmonių dažnai tikiuosi labai aukštų standartų.",
+    "Man sunku suprasti, kodėl žmogus nepadaro darbo geriau, jei gali tai padaryti.",
+    "Kai kiti žmonės padaro klaidų, kartais jaučiu nusivylimą jais.",
+
+    "Atidedu užduotis, nors žinau, kad vėliau dėl to bus sunkiau.",
+    "Svarbius darbus dažnai pradedu tik tada, kai lieka mažai laiko.",
+    "Vietoj svarbios užduoties dažnai randu kitų dalykų, kuriuos galiu daryti.",
+    "Man sunku pradėti užduotį, net kai turiu pakankamai laiko.",
+    "Kartais laukiu, kol „atsiras tinkama nuotaika“, kad galėčiau pradėti darbą.",
+    "Mano atidėliojimas dažnai sukelia stresą arba kaltės jausmą."
+];
+
+const answerOptions = [
+    { text: "Visiškai nesutinku", value: 1 },
+    { text: "Nesutinku", value: 2 },
+    { text: "Nei sutinku, nei nesutinku", value: 3 },
+    { text: "Sutinku", value: 4 },
+    { text: "Visiškai sutinku", value: 5 }
+];
+
+let currentQuestion = 0;
+let userAnswers = new Array(questions.length).fill(null);
+
+/* TESTO PRADŽIA */
+
+function startQuiz() {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("quizScreen").style.display = "block";
+
+    currentQuestion = 0;
+    showQuestion();
+}
+
+/* KLAUSIMO RODYMAS */
+
+function showQuestion() {
+
+    document.getElementById("questionNumber").textContent =
+        (currentQuestion + 1) + " / " + questions.length;
+
+    document.getElementById("questionText").textContent =
+        questions[currentQuestion];
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    const answersContainer =
+        document.getElementById("answers");
+
+    answersContainer.innerHTML = "";
+
+    answerOptions.forEach(option => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer";
+        button.textContent = option.text;
+
+        if (userAnswers[currentQuestion] === option.value) {
+            button.classList.add("selected");
+        }
+
+        button.onclick = function() {
+            selectAnswer(option.value);
+        };
+
+        answersContainer.appendChild(button);
+    });
+
+    document.getElementById("backButton").style.visibility =
+        currentQuestion === 0 ? "hidden" : "visible";
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+    nextButton.disabled =
+        userAnswers[currentQuestion] === null;
+
+    nextButton.textContent =
+        currentQuestion === questions.length - 1
+        ? "Pamatyti rezultatą"
+        : "Kitas";
+}
+
+/* ATSAKYMO PASIRINKIMAS */
+
+function selectAnswer(value) {
+
+    userAnswers[currentQuestion] = value;
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach((button, index) => {
+        button.classList.toggle(
+            "selected",
+            answerOptions[index].value === value
+        );
+    });
+
+    document.getElementById("nextButton").disabled = false;
+}
+
+/* KITAS KLAUSIMAS */
+
+function nextQuestion() {
+
+    if (userAnswers[currentQuestion] === null) {
+        return;
+    }
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+        showQuestion();
+
+    } else {
+
+        calculateResult();
+    }
+}
+
+/* ANKSTESNIS KLAUSIMAS */
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+    }
+}
+
+/* VIDURKIS */
+
+function average(start, end) {
+
+    const values =
+        userAnswers.slice(start, end);
+
+    const total =
+        values.reduce((sum, value) => sum + value, 0);
+
+    return total / values.length;
+}
+
+/* REZULTATO SKAIČIAVIMAS */
+
+function calculateResult() {
+
+    const self = average(0, 5);
+    const social = average(5, 10);
+    const others = average(10, 14);
+    const procrastination = average(14, 20);
+
+    const scores = {
+        self,
+        social,
+        others,
+        procrastination
+    };
+
+    const result = chooseResult(scores);
+
+    showResult(result, scores);
+}
+
+/* REZULTATO PARINKIMAS */
+
+function chooseResult(scores) {
+
+    const self = scores.self;
+    const social = scores.social;
+    const others = scores.others;
+    const procrastination = scores.procrastination;
+
+    const high = 3.8;
+    const low = 2.5;
+
+    /*
+    Pirmiausia tikrinamos svarbios kombinacijos.
+    */
+
+    if (self >= high && social >= high && procrastination >= high) {
+        return results.mixed;
+    }
+
+    if (self >= high && procrastination >= high) {
+        return results.selfProcrastination;
+    }
+
+    if (social >= high && procrastination >= high) {
+        return results.socialProcrastination;
+    }
+
+    const perfectionismHighCount =
+        [self, social, others].filter(score => score >= high).length;
+
+    if (perfectionismHighCount >= 2) {
+        return results.mixed;
+    }
+
+    if (procrastination >= high) {
+        return results.procrastination;
+    }
+
+    if (self >= high) {
+        return results.self;
+    }
+
+    if (social >= high) {
+        return results.social;
+    }
+
+    if (others >= high) {
+        return results.others;
+    }
+
+    if (
+        self < low &&
+        social < low &&
+        others < low &&
+        procrastination < low
+    ) {
+        return results.balanced;
+    }
+
+    /*
+    Jei nėra aiškiai aukšto rezultato,
+    parenkama ryškiausia tendencija.
+    */
+
+    const highest = Math.max(
+        self,
+        social,
+        others,
+        procrastination
+    );
+
+    if (highest === procrastination && procrastination >= 3.2) {
+        return results.procrastination;
+    }
+
+    if (highest === self && self >= 3.2) {
+        return results.self;
+    }
+
+    if (highest === social && social >= 3.2) {
+        return results.social;
+    }
+
+    if (highest === others && others >= 3.2) {
+        return results.others;
+    }
+
+    return results.balanced;
+}
+
+/* VISI GALIMI REZULTATAI */
+
+const results = {
+
+    balanced: {
+        title: "Subalansuotas požiūris į užduotis",
+        summary:
+            "Tavo atsakymai nerodo ryškaus vienos vertinamos tendencijos dominavimo.",
+        description:
+            "Atrodo, kad dažniausiai gebi gana lanksčiai vertinti savo darbo rezultatus ir nesi stipriai linkęs sistemingai atidėlioti svarbių užduočių. Tai nereiškia, kad niekada nesusiduri su aukštais reikalavimais ar atidėliojimu - skirtingose situacijose tavo elgesys gali skirtis.",
+        advice: [
+            "Toliau kelk sau realistiškus ir pasiekiamus tikslus.",
+            "Dideles užduotis skaidyk į mažesnius etapus.",
+            "Palik pakankamai laiko poilsiui.",
+            "Vertink ne tik galutinį rezultatą, bet ir savo pažangą.",
+            "Pastebėjęs, kad reikalavimai sau didėja, prisimink, kad gerai atliktas darbas neprivalo būti tobulas."
+        ]
+    },
+
+    self: {
+        title: "Aukšti standartai sau",
+        summary:
+            "Tavo atsakymai rodo polinkį kelti sau labai aukštus standartus.",
+        description:
+            "Tau gali būti svarbu darbą atlikti kuo geriau. Kartais gali būti sunku priimti savo klaidas arba pasitenkinti rezultatu, jei žinai, kad teoriškai galėjai padaryti dar geriau. Aukšti standartai savaime nėra blogas dalykas - jie gali skatinti stengtis ir siekti tikslų. Sunkumų gali atsirasti tada, kai gerai atliktas darbas pradeda atrodyti nepakankamai geras.",
+        advice: [
+            "Prieš pradėdamas darbą nusistatyk, koks rezultatas bus pakankamai geras.",
+            "Nustatyk konkrečią darbo laiko ribą.",
+            "Paklausk savęs: ar aš dar gerinu rezultatą, ar jau bandau jį padaryti tobulą?",
+            "Vertink ne tik galutinį rezultatą, bet ir įdėtas pastangas bei pažangą.",
+            "Klaidas vertink kaip galimybę suprasti, ką kitą kartą galima padaryti geriau.",
+            "Leisk sau kartais atlikti užduotį tiesiog gerai, o ne nepriekaištingai."
+        ]
+    },
+
+    social: {
+        title: "Kitų lūkesčių spaudimas",
+        summary:
+            "Tavo atsakymai rodo polinkį stipriai atsižvelgti į kitų žmonių lūkesčius.",
+        description:
+            "Tau gali būti svarbu nenuvilti kitų žmonių ir atitikti jų lūkesčius. Kartais gali nerimauti, kaip kiti įvertins tavo rezultatą ar klaidas. Dėl to užduotis gali tapti ne tik darbu, kurį reikia atlikti, bet ir savo gebėjimų ar vertės patikrinimu.",
+        advice: [
+            "Paklausk savęs: ar žmogus tikrai to iš manęs reikalauja, ar aš tik manau, kad jis to reikalauja?",
+            "Atskirk savo tikslus nuo kitų žmonių lūkesčių.",
+            "Primink sau, kad viena klaida neapibrėžia tavo gebėjimų ar vertės.",
+            "Prieš atlikdamas užduotį pagalvok, ko pats nori išmokti ar pasiekti.",
+            "Jei bijai neigiamo vertinimo, pagalvok apie realiausią, o ne blogiausią galimą situaciją.",
+            "Atkreipk dėmesį, kada stengiesi dėl savęs, o kada tik dėl kitų pritarimo."
+        ]
+    },
+
+    others: {
+        title: "Aukšti reikalavimai kitiems",
+        summary:
+            "Tavo atsakymai rodo polinkį kelti aukštus standartus kitiems žmonėms.",
+        description:
+            "Tau gali būti svarbu, kad kiti žmonės stengtųsi ir savo darbą atliktų kokybiškai. Todėl gali erzinti situacijos, kai matai, kad žmogus galėjo padaryti geriau, tačiau, tavo nuomone, neįdėjo pakankamai pastangų. Kartais dėl to gali būti sunkiau priimti kitų žmonių klaidas arba kitokį darbo būdą.",
+        advice: [
+            "Prisimink, kad kitaip nebūtinai reiškia blogiau.",
+            "Paklausk savęs: ar rezultatas iš tikrųjų netinkamas, ar jis tiesiog ne toks, kaip būčiau padaręs aš?",
+            "Vertink ne tik rezultatą, bet ir žmogaus pastangas bei aplinkybes.",
+            "Grupiniame darbe iš anksto susitarkite dėl bendrų darbo standartų.",
+            "Leisk kitiems atlikti savo darbo dalį jų pasirinktu būdu.",
+            "Prisimink, kad žmonių gebėjimai, darbo tempas ir prioritetai gali skirtis."
+        ]
+    },
+
+    procrastination: {
+        title: "Polinkis atidėlioti",
+        summary:
+            "Tavo atsakymai rodo polinkį atidėlioti svarbias užduotis.",
+        description:
+            "Gali būti, kad svarbias užduotis kartais atidedi, nors žinai, kad vėliau dėl to gali būti sunkiau. Tau gali būti sunku pradėti užduotį, todėl atsiranda kitų, tuo metu patrauklesnių veiklų arba lauki tinkamos nuotaikos. Atidėliojimas gali sukelti papildomą stresą ar kaltės jausmą. Šis rezultatas nereiškia, kad esi tingus - jis tik parodo tavo atsakymuose matomą atidėliojimo tendenciją.",
+        advice: [
+            "Išbandyk 5 minučių taisyklę - nuspręsk dirbti tik 5 minutes. Svarbiausia pradėti.",
+            "Dideles užduotis suskaidyk į mažus ir konkrečius veiksmus.",
+            "Nustatyk ne tik galutinį terminą, bet ir konkretų darbo pradžios laiką.",
+            "Išbandyk 25 minučių darbo ir 5 minučių pertraukos principą.",
+            "Dirbdamas pašalink lengviausiai pasiekiamus trukdžius, pavyzdžiui, telefoną.",
+            "Nelauk tinkamos nuotaikos - motyvacija kartais atsiranda jau pradėjus dirbti."
+        ]
+    },
+
+    selfProcrastination: {
+        title: "Nori padaryti puikiai, todėl sunku pradėti",
+        summary:
+            "Tavo atsakymuose kartu matomas polinkis kelti sau aukštus standartus ir atidėlioti užduotis.",
+        description:
+            "Tau gali būti svarbu darbą atlikti labai gerai, tačiau kai kurios užduotys gali atrodyti sunkiau pradedamos. Mintis „turiu padaryti labai gerai“ kartais gali sukelti daugiau įtampos nei paprastesnė mintis „pirmiausia tiesiog pradėsiu“. Šis testas nenustato, kad aukšti standartai sukelia atidėliojimą - jis tik parodo, kad tavo atsakymuose šios dvi tendencijos pasireiškia kartu.",
+        advice: [
+            "Pirmą darbo versiją laikyk juodraščiu, o ne galutiniu rezultatu.",
+            "Vadovaukis principu: pirmiausia padaryta, paskui patobulinta.",
+            "Didelę užduotį sumažink iki vieno 5-10 minučių veiksmo.",
+            "Iš anksto nusistatyk, kada darbas bus pakankamai geras.",
+            "Ribok taisymų skaičių, pavyzdžiui, nuspręsk darbą pataisyti tik du kartus.",
+            "Pastebėjęs mintį „dar nesu pasiruošęs“, pradėk nuo lengviausios užduoties dalies."
+        ]
+    },
+
+    socialProcrastination: {
+        title: "Kitų lūkesčiai ir atidėliojimas",
+        summary:
+            "Tavo atsakymuose matomas ir kitų lūkesčių spaudimas, ir polinkis atidėlioti.",
+        description:
+            "Tau gali būti svarbu, ką apie tavo darbą pagalvos mokytojai, dėstytojai, tėvai, bendrakursiai ar kiti žmonės. Kai rezultatas tampa labai svarbus kitų vertinimui, užduotis gali kelti daugiau įtampos. Tuo pačiu tavo atsakymai rodo polinkį kai kurias svarbias užduotis atidėti. Testas nenustato, kad viena iš šių tendencijų sukelia kitą.",
+        advice: [
+            "Užrašyk, ko iš tavęs iš tikrųjų reikalauja konkreti užduotis.",
+            "Atskirai pagalvok, ko, tavo manymu, iš tavęs tikisi kiti, ir ar turi tam realių įrodymų.",
+            "Stenkis koncentruotis į pačią užduotį, o ne į būsimą kitų žmonių vertinimą.",
+            "Leisk sau pateikti gerą darbą, net jei jis nėra nepriekaištingas.",
+            "Pradėk nuo mažos užduoties dalies, kurios dar niekam nereikia rodyti.",
+            "Baigęs darbą pirmiausia paklausk: ką jau padariau? Tik tada galvok, ką dar galėtum pagerinti."
+        ]
+    },
+
+    mixed: {
+        title: "Mišrus aukštų standartų profilis",
+        summary:
+            "Tavo atsakymai rodo kelias ryškesnes tendencijas vienu metu.",
+        description:
+            "Aukšti standartai tavo atsakymuose pasireiškia keliais būdais. Gali daug reikalauti iš savęs, stipriai atsižvelgti į kitų žmonių lūkesčius ir/arba kelti aukštus reikalavimus kitiems. Gali būti ryškesnis ir užduočių atidėliojimas. Siekti kokybės gali būti naudinga, tačiau verta stebėti, kada aukšti standartai padeda siekti tikslų, o kada pradeda kelti nereikalingą įtampą.",
+        advice: [
+            "Mokykis atskirti aukštą kokybę nuo tobulumo.",
+            "Kiekvienai svarbiai užduočiai iš anksto nustatyk pakankamai gero rezultato kriterijų.",
+            "Paklausk savęs, kieno standartą šiuo metu bandai atitikti - savo ar kitų.",
+            "Sąmoningai mokykis toleruoti nedideles savo ir kitų klaidas.",
+            "Sudėtingoms užduotims nustatyk konkrečias laiko ribas.",
+            "Vertink savo ir kitų pažangą, o ne tik galutinį rezultatą."
+        ]
+    }
+};
+
+/* REZULTATO PARODYMAS */
+
+function showResult(result, scores) {
+
+    document.getElementById("quizScreen").style.display = "none";
+    document.getElementById("resultScreen").style.display = "block";
+
+    document.getElementById("resultTitle").textContent =
+        result.title;
+
+    document.getElementById("resultSummary").textContent =
+        result.summary;
+
+    document.getElementById("resultDescription").textContent =
+        result.description;
+
+    const adviceList =
+        document.getElementById("resultAdvice");
+
+    adviceList.innerHTML = "";
+
+    result.advice.forEach(advice => {
+
+        const li = document.createElement("li");
+        li.textContent = advice;
+        adviceList.appendChild(li);
+    });
+
+    showProfile(scores);
+
+    document.getElementById("testas").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+/* PROFILIO JUOSTOS */
+
+function showProfile(scores) {
+
+    const profile =
+        document.getElementById("profileResults");
+
+    profile.innerHTML = "";
+
+    const categories = [
+        {
+            name: "Aukšti standartai sau",
+            score: scores.self
+        },
+        {
+            name: "Kitų lūkesčių spaudimas",
+            score: scores.social
+        },
+        {
+            name: "Aukšti reikalavimai kitiems",
+            score: scores.others
+        },
+        {
+            name: "Polinkis atidėlioti",
+            score: scores.procrastination
+        }
+    ];
+
+    categories.forEach(category => {
+
+        const percentage =
+            (category.score / 5) * 100;
+
+        const item =
+            document.createElement("div");
+
+        item.className = "profile-item";
+
+        item.innerHTML = `
+            <div class="profile-header">
+                <span>${category.name}</span>
+                <span>${category.score.toFixed(1)} / 5</span>
+            </div>
+
+            <div class="profile-track">
+                <div class="profile-fill"
+                     style="width:${percentage}%;">
+                </div>
+            </div>
+        `;
+
+        profile.appendChild(item);
+    });
+}
+
+/* TESTĄ PRADĖTI IŠ NAUJO */
+
+function restartQuiz() {
+
+    userAnswers =
+        new Array(questions.length).fill(null);
+
+    currentQuestion = 0;
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("startScreen").style.display =
+        "block";
+
+    document.getElementById("testas").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+</script>
+
 </body>
 </html>
-```
