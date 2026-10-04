@@ -1,895 +1,686 @@
+```html
 <!DOCTYPE html>
 <html lang="lt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</title>
+<title>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+:root {
+    --purple: #68418c;
+    --dark-purple: #38234b;
+    --light-purple: #f0e8f7;
+    --background: #faf8fc;
+    --text: #302b35;
+    --muted: #655d6c;
+    --white: #ffffff;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f7f4fb;
-            color: #292331;
-            line-height: 1.7;
-        }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
 
-        /* NAVIGACIJA */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.8;
+}
 
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 2px 15px rgba(60, 35, 80, 0.08);
-            padding: 16px 30px;
-        }
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid #e9e0ef;
+    padding: 16px 5%;
+}
 
-        .nav-container {
-            max-width: 1150px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
+.nav-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
 
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: #6d3fa0;
-        }
+.logo {
+    color: var(--purple);
+    font-weight: bold;
+    font-size: 18px;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-            flex-wrap: wrap;
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: #403747;
-            font-weight: 600;
-            transition: 0.2s;
-        }
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-        .nav-links a:hover {
-            color: #7b45ad;
-        }
+nav a:hover {
+    color: var(--purple);
+}
 
-        /* PAGRINDINIS PUSLAPIS */
+.hero {
+    padding: 105px 24px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top left, #e8d8f4, transparent 55%),
+        radial-gradient(ellipse at bottom right, #ded0ee, transparent 55%),
+        #f7f2fa;
+}
 
-        .hero {
-            min-height: 75vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 25px;
-            background:
-                radial-gradient(circle at top left, #e9d9f7, transparent 40%),
-                radial-gradient(circle at bottom right, #ddd0f1, transparent 40%),
-                #f7f4fb;
-        }
+.hero-inner {
+    max-width: 950px;
+    margin: auto;
+}
 
-        .hero-content {
-            max-width: 900px;
-        }
+.eyebrow {
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
 
-        .hero h1 {
-            font-size: clamp(36px, 6vw, 68px);
-            line-height: 1.1;
-            color: #4e276e;
-            margin-bottom: 25px;
-        }
+.hero h1 {
+    color: var(--dark-purple);
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.18;
+    margin-bottom: 26px;
+}
 
-        .hero p {
-            font-size: 20px;
-            color: #5e5665;
-            max-width: 750px;
-            margin: auto;
-        }
+.hero p {
+    max-width: 760px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 18px;
+}
 
-        .button {
-            display: inline-block;
-            margin-top: 35px;
-            padding: 14px 28px;
-            background: #7043a0;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: 0.25s;
-        }
+.button {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 13px 25px;
+    background: var(--purple);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .button:hover {
-            background: #59327f;
-            transform: translateY(-2px);
-        }
+.button:hover {
+    background: var(--dark-purple);
+}
 
-        /* BENDRI SKYRIAI */
+section {
+    max-width: 1050px;
+    margin: auto;
+    padding: 78px 24px;
+}
 
-        section {
-            max-width: 1050px;
-            margin: auto;
-            padding: 85px 25px;
-        }
+.section-label {
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-align: center;
+}
 
-        .section-title {
-            text-align: center;
-            color: #4e276e;
-            font-size: 36px;
-            margin-bottom: 18px;
-        }
+h2 {
+    color: var(--dark-purple);
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 22px;
+}
 
-        .section-intro {
-            max-width: 800px;
-            margin: 0 auto 45px;
-            text-align: center;
-            color: #625b69;
-            font-size: 17px;
-        }
+h3 {
+    color: var(--purple);
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
 
-        .content-box {
-            background: white;
-            border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(70, 40, 90, 0.07);
-        }
+.section-intro {
+    max-width: 790px;
+    margin: 0 auto 36px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 17px;
+}
 
-        .content-box h3 {
-            color: #7043a0;
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
+.panel {
+    background: var(--white);
+    border: 1px solid #eee7f2;
+    border-radius: 14px;
+    padding: 30px;
+    margin: 22px 0;
+    box-shadow: 0 7px 24px rgba(60, 35, 80, 0.045);
+}
 
-        .content-box p {
-            margin-bottom: 15px;
-        }
+.panel p + p {
+    margin-top: 16px;
+}
 
-        .content-box p:last-child {
-            margin-bottom: 0;
-        }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
 
-        /* KORTELĖS */
+.card {
+    background: white;
+    border: 1px solid #eee7f2;
+    border-radius: 14px;
+    padding: 27px;
+    box-shadow: 0 7px 24px rgba(60, 35, 80, 0.045);
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 40px;
-        }
+.card p + p {
+    margin-top: 13px;
+}
 
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(70, 40, 90, 0.07);
-            transition: 0.25s;
-        }
+.wide-card {
+    grid-column: 1 / -1;
+}
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(70, 40, 90, 0.12);
-        }
+ul.content-list {
+    padding-left: 25px;
+    margin-top: 12px;
+}
 
-        .card h3 {
-            color: #7043a0;
-            margin-bottom: 12px;
-        }
+.content-list li {
+    padding-left: 4px;
+    margin-bottom: 8px;
+}
 
-        /* SĄRAŠAI */
+.note {
+    background: var(--light-purple);
+    border-left: 4px solid var(--purple);
+    border-radius: 8px;
+    padding: 23px 25px;
+    margin-top: 25px;
+}
 
-        ul {
-            padding-left: 25px;
-        }
+.note strong {
+    color: var(--dark-purple);
+}
 
-        li {
-            margin-bottom: 9px;
-        }
+.cycle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0;
+}
 
-        /* PARYŠKINTA INFORMACIJA */
+.cycle-step {
+    background: var(--light-purple);
+    color: var(--dark-purple);
+    border: 1px solid #e2d3ef;
+    border-radius: 10px;
+    padding: 13px 15px;
+    text-align: center;
+    font-weight: bold;
+    flex: 1 1 125px;
+}
 
-        .highlight {
-            background: #eee4f7;
-            border-left: 5px solid #7043a0;
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 25px;
-        }
+.cycle-arrow {
+    color: var(--purple);
+    font-size: 23px;
+    font-weight: bold;
+}
 
-        .highlight strong {
-            color: #59327f;
-        }
+.test-area {
+    max-width: none;
+    background: var(--light-purple);
+}
 
-        /* CIKLAS */
+.test-inner {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
 
-        .cycle {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin: 35px 0;
-        }
+.test-box {
+    background: white;
+    border-radius: 14px;
+    padding: 38px 25px;
+    margin-top: 28px;
+}
 
-        .cycle-step {
-            background: #eee4f7;
-            color: #4e276e;
-            padding: 15px 18px;
-            border-radius: 12px;
-            font-weight: bold;
-            text-align: center;
-        }
+footer {
+    background: var(--dark-purple);
+    color: #f5edf9;
+    padding: 35px 20px;
+    text-align: center;
+}
 
-        .arrow {
-            font-size: 24px;
-            color: #7043a0;
-        }
+footer p + p {
+    margin-top: 7px;
+    color: #d9cbe5;
+    font-size: 14px;
+}
 
-        /* TESTO SKYRIUS */
+@media (max-width: 760px) {
+    .nav-inner {
+        flex-direction: column;
+    }
 
-        .test-section {
-            background: #eee4f7;
-            max-width: none;
-        }
+    nav ul {
+        justify-content: center;
+        gap: 12px;
+    }
 
-        .test-container {
-            max-width: 1050px;
-            margin: auto;
-            padding: 85px 25px;
-            text-align: center;
-        }
+    nav a {
+        font-size: 13px;
+    }
 
-        .test-container h2 {
-            color: #4e276e;
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
+    .hero {
+        padding: 75px 22px;
+    }
 
-        .test-placeholder {
-            background: white;
-            border-radius: 20px;
-            padding: 45px;
-            margin-top: 35px;
-            box-shadow: 0 8px 30px rgba(70, 40, 90, 0.07);
-        }
+    section {
+        padding: 58px 20px;
+    }
 
-        .test-placeholder p {
-            color: #625b69;
-            font-size: 18px;
-        }
+    .grid {
+        grid-template-columns: 1fr;
+    }
 
-        /* APAČIA */
+    .wide-card {
+        grid-column: auto;
+    }
 
-        footer {
-            background: #392347;
-            color: #eee7f2;
-            text-align: center;
-            padding: 35px 20px;
-        }
+    .panel, .card {
+        padding: 23px;
+    }
 
-        footer p {
-            margin: 5px;
-        }
+    .cycle {
+        flex-direction: column;
+    }
 
-        /* MOBILUSIS */
+    .cycle-step {
+        width: 100%;
+        flex-basis: auto;
+    }
 
-        @media (max-width: 800px) {
-
-            .nav-container {
-                flex-direction: column;
-            }
-
-            .nav-links {
-                justify-content: center;
-                gap: 15px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                min-height: 65vh;
-                padding: 60px 20px;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            .content-box {
-                padding: 25px;
-            }
-
-            .cycle {
-                flex-direction: column;
-            }
-
-            .arrow {
-                transform: rotate(90deg);
-            }
-        }
-    </style>
+    .cycle-arrow {
+        transform: rotate(90deg);
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVIGACIJA -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo">Psichologija ir mokymasis</div>
 
-    <nav>
-        <div class="nav-container">
+        <ul>
+            <li><a href="#tikslas">Darbo tikslas</a></li>
+            <li><a href="#perfekcionizmas">Perfekcionizmas</a></li>
+            <li><a href="#prokrastinacija">Prokrastinacija</a></li>
+            <li><a href="#rysys">Jų ryšys</a></li>
+            <li><a href="#rezultatai">Akademiniai rezultatai</a></li>
+            <li><a href="#svarba">Kodėl svarbu?</a></li>
+            <li><a href="#testas">Testas</a></li>
+        </ul>
+    </div>
+</nav>
 
-            <div class="logo">
-                Psichologinis tyrimas
-            </div>
+<header class="hero">
+    <div class="hero-inner">
+        <p class="eyebrow">Mokinių mokymasis ir psichologija</p>
 
-            <ul class="nav-links">
-                <li><a href="#apie">Apie projektą</a></li>
-                <li><a href="#perfekcionizmas">Perfekcionizmas</a></li>
-                <li><a href="#prokrastinacija">Prokrastinacija</a></li>
-                <li><a href="#rysys">Ryšys</a></li>
-                <li><a href="#akademiniai">Akademiniai rezultatai</a></li>
-                <li><a href="#testas">Testas</a></li>
-            </ul>
+        <h1>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</h1>
 
-        </div>
-    </nav>
+        <p>
+            Kas skatina siekti tobulumo? Kodėl kartais atidėliojame svarbias
+            užduotis? Ir kaip šie reiškiniai gali būti susiję su mokymusi bei pažymiais?
+        </p>
 
+        <a class="button" href="#tikslas">Susipažinti su tema</a>
+    </div>
+</header>
 
-    <!-- PAGRINDINIS -->
+<main>
 
-    <header class="hero">
+<section id="tikslas">
+    <p class="section-label">01 · Tyrimo pristatymas</p>
+    <h2>Darbo tikslas</h2>
 
-        <div class="hero-content">
-
-            <h1>
-                Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams
-            </h1>
-
-            <p>
-                Tyrimas apie perfekcionizmą, prokrastinaciją, jų tarpusavio ryšį
-                ir galimą poveikį mokinių mokymuisi bei akademiniams rezultatams.
-            </p>
-
-            <a href="#apie" class="button">
-                Sužinoti daugiau
-            </a>
-
-        </div>
-
-    </header>
-
-
-    <!-- APIE PROJEKTĄ -->
-
-    <section id="apie">
-
-        <h2 class="section-title">
-            Darbo tikslas
-        </h2>
-
-        <p class="section-intro">
+    <div class="panel">
+        <p>
             Šio darbo tikslas – praplėsti žmonių akiratį apie perfekcionizmą
-            ir prokrastinaciją bei geriau suprasti šių reiškinių poveikį.
+            ir prokrastinaciją, paaiškinti, kuo šie reiškiniai skiriasi ir kaip
+            jie gali būti tarpusavyje susiję.
         </p>
 
-        <div class="content-box">
+        <p>
+            Taip pat siekiama išsiaiškinti, kaip perfekcionizmas ir
+            prokrastinacija gali būti susiję su mokinių akademiniais
+            rezultatais bei pažymiais.
+        </p>
+    </div>
+</section>
 
-            <p>
-                Šio darbo tikslas – praplėsti žmonių akiratį apie perfekcionizmą
-                ir prokrastinaciją, paaiškinti, kuo šie reiškiniai skiriasi ir
-                kaip jie gali būti tarpusavyje susiję.
-            </p>
+<section id="perfekcionizmas">
+    <p class="section-label">02 · Aukšti standartai</p>
+    <h2>Kas yra perfekcionizmas?</h2>
 
-            <p>
-                Taip pat siekiama išsiaiškinti, kaip perfekcionizmas ir
-                prokrastinacija gali būti susiję su mokinių akademiniais
-                rezultatais bei pažymiais.
-            </p>
+    <p class="section-intro">
+        Perfekcionizmas – asmenybės bruožas, kuriam būdingas siekis
+        pasiekti labai aukštus standartus ir atlikti užduotis kuo geriau.
+    </p>
 
-        </div>
-
-    </section>
-
-
-    <!-- PERFEKCIONIZMAS -->
-
-    <section id="perfekcionizmas">
-
-        <h2 class="section-title">
-            Kas yra perfekcionizmas?
-        </h2>
-
-        <p class="section-intro">
-            Perfekcionizmas – tai asmenybės bruožas, susijęs su labai aukštais
-            standartais ir siekiu atlikti užduotis kuo geriau.
+    <div class="panel">
+        <p>
+            Perfekcionistui gali būti svarbu ne tik pasiekti gerą rezultatą,
+            bet ir išvengti klaidų.
         </p>
 
-        <div class="content-box">
+        <p>
+            Svarbu suprasti, kad perfekcionizmas ne visada yra neigiamas.
+            Jis gali padėti žmogui siekti tikslų, tačiau tam tikrais atvejais
+            labai aukšti reikalavimai sau gali sukelti stresą,
+            nepasitenkinimą savimi ar baimę suklysti.
+        </p>
+    </div>
 
+    <h2>Perfekcionizmo rūšys pagal poveikį</h2>
+
+    <div class="grid">
+        <article class="card">
+            <h3>Adaptyvusis perfekcionizmas</h3>
             <p>
-                Perfekcionizmas – asmenybės bruožas, kuriam būdingas siekis
-                pasiekti labai aukštus standartus ir atlikti užduotis kuo geriau.
-                Perfekcionistui gali būti svarbu ne tik pasiekti gerą rezultatą,
-                bet ir išvengti klaidų.
+                Tai perfekcionizmas, kai žmogus siekia aukštų rezultatų,
+                tačiau geba priimti klaidas kaip natūralią mokymosi proceso dalį.
             </p>
-
             <p>
-                Svarbu suprasti, kad perfekcionizmas ne visada yra neigiamas.
-                Jis gali padėti žmogui siekti tikslų, tačiau tam tikrais atvejais
-                labai aukšti reikalavimai sau gali sukelti stresą,
-                nepasitenkinimą savimi ar baimę suklysti.
+                Toks perfekcionizmas gali padėti žmogui išlikti motyvuotam,
+                planuoti savo laiką ir siekti geresnių rezultatų.
             </p>
+        </article>
 
-        </div>
+        <article class="card">
+            <h3>Maladaptacinis perfekcionizmas</h3>
+            <p>
+                Tai perfekcionizmas, kai žmogus sau kelia itin aukštus arba
+                sunkiai pasiekiamus reikalavimus, stipriai bijo suklysti
+                ir yra linkęs griežtai save kritikuoti.
+            </p>
+            <p>
+                Net ir pasiekęs gerą rezultatą žmogus gali manyti, kad galėjo
+                padaryti dar geriau. Tai gali būti susiję su stresu, nerimu,
+                nepasitenkinimu savimi ir mokymosi sunkumais.
+            </p>
+        </article>
+    </div>
 
+    <h2 style="margin-top: 55px;">Perfekcionizmo rūšys pagal nukreiptumą</h2>
 
-        <h2 class="section-title">
-            Perfekcionizmo rūšys pagal poveikį
-        </h2>
+    <div class="grid">
+        <article class="card">
+            <h3>Į save nukreiptas perfekcionizmas</h3>
+            <p>
+                Žmogus sau kelia itin aukštus standartus ir griežtai
+                vertina savo klaidas bei trūkumus.
+            </p>
+        </article>
 
-        <div class="cards">
+        <article class="card">
+            <h3>Socialiai primestas perfekcionizmas</h3>
+            <p>
+                Žmogus jaučia, kad aplinkiniai iš jo tikisi tobulumo.
+                Tokie lūkesčiai gali būti siejami su tėvais, mokytojais,
+                draugais ar kitais svarbiais žmonėmis.
+            </p>
+            <p>
+                Dėl to gali atsirasti baimė nuvilti kitus, būti
+                sukritikuotam ar nepriimtam.
+            </p>
+        </article>
 
-            <div class="card">
+        <article class="card wide-card">
+            <h3>Į kitus nukreiptas perfekcionizmas</h3>
+            <p>
+                Žmogus kelia labai aukštus reikalavimus aplinkiniams
+                ir tikisi, kad jie taip pat elgsis bei pasieks rezultatų
+                pagal jo nustatytus standartus.
+            </p>
+        </article>
+    </div>
 
-                <h3>
-                    Adaptyvusis perfekcionizmas
-                </h3>
+    <div class="note">
+        <strong>Svarbu paminėti:</strong>
+        šios klasifikacijos nėra visiškai atskiros. Pavyzdžiui, į save
+        nukreiptas perfekcionizmas gali būti ir adaptyvus, ir maladaptacinis –
+        tai priklauso nuo to, kaip žmogus reaguoja į savo klaidas ir nesėkmes.
+    </div>
+</section>
 
-                <p>
-                    Žmogus siekia aukštų rezultatų, tačiau geba priimti klaidas
-                    kaip natūralią mokymosi proceso dalį.
-                </p>
+<section id="prokrastinacija">
+    <p class="section-label">03 · Užduočių atidėliojimas</p>
+    <h2>Kas yra prokrastinacija?</h2>
 
-                <p>
-                    Toks perfekcionizmas gali padėti išlikti motyvuotam,
-                    planuoti laiką ir siekti geresnių rezultatų.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Maladaptacinis perfekcionizmas
-                </h3>
-
-                <p>
-                    Žmogus sau kelia itin aukštus arba sunkiai pasiekiamus
-                    reikalavimus, stipriai bijo suklysti ir yra linkęs
-                    griežtai save kritikuoti.
-                </p>
-
-                <p>
-                    Tai gali būti susiję su stresu, nerimu, nepasitenkinimu
-                    savimi ir mokymosi sunkumais.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Svarbu žinoti
-                </h3>
-
-                <p>
-                    Šios klasifikacijos nėra visiškai atskiros.
-                    Pavyzdžiui, į save nukreiptas perfekcionizmas gali būti
-                    ir adaptyvus, ir maladaptacinis.
-                </p>
-
-                <p>
-                    Tai priklauso nuo to, kaip žmogus reaguoja į savo klaidas
-                    ir nesėkmes.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <h2 class="section-title" style="margin-top: 70px;">
-            Perfekcionizmo rūšys pagal nukreiptumą
-        </h2>
-
-        <div class="cards">
-
-            <div class="card">
-
-                <h3>
-                    Į save nukreiptas perfekcionizmas
-                </h3>
-
-                <p>
-                    Žmogus sau kelia itin aukštus standartus ir griežtai
-                    vertina savo klaidas bei trūkumus.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Socialiai primestas perfekcionizmas
-                </h3>
-
-                <p>
-                    Žmogus jaučia, kad aplinkiniai iš jo tikisi tobulumo.
-                    Tokie lūkesčiai gali būti siejami su tėvais, mokytojais,
-                    draugais ar kitais svarbiais žmonėmis.
-                </p>
-
-                <p>
-                    Dėl to gali atsirasti baimė nuvilti kitus, būti
-                    sukritikuotam ar nepriimtam.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Į kitus nukreiptas perfekcionizmas
-                </h3>
-
-                <p>
-                    Žmogus kelia labai aukštus reikalavimus aplinkiniams
-                    ir tikisi, kad jie taip pat elgsis bei pasieks rezultatų
-                    pagal jo nustatytus standartus.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROKRASTINACIJA -->
-
-    <section id="prokrastinacija">
-
-        <h2 class="section-title">
-            Kas yra prokrastinacija?
-        </h2>
-
-        <p class="section-intro">
+    <div class="panel">
+        <p>
             Prokrastinacija – svarbių ar suplanuotų užduočių atidėliojimas,
             nors žmogus žino, kad toks elgesys gali turėti neigiamų pasekmių.
         </p>
 
-        <div class="content-box">
-
-            <p>
-                Pavyzdžiui, mokinys vietoj mokymosi pradeda naršyti socialiniuose
-                tinkluose, žiūrėti vaizdo įrašus ar užsiimti kita veikla.
-                Vėliau darbus tenka atlikti paskutinę minutę.
-            </p>
-
-            <p>
-                Prokrastinacija ne visada reiškia tinginystę. Nors žmogus gali
-                tiesiog nenorėti atlikti užduoties, atidėliojimą taip pat gali
-                lemti įvairūs psichologiniai veiksniai.
-            </p>
-
-        </div>
-
-
-        <div class="content-box">
-
-            <h3>
-                Kas gali lemti prokrastinaciją?
-            </h3>
-
-            <ul>
-                <li>Baimė suklysti.</li>
-                <li>Per dideli lūkesčiai sau.</li>
-                <li>Užduoties sudėtingumas.</li>
-                <li>Motyvacijos trūkumas.</li>
-                <li>Stresas.</li>
-                <li>Sunkumas pradėti didelę ar neaiškią užduotį.</li>
-                <li>Noras išvengti nemalonių emocijų.</li>
-            </ul>
-
-            <div class="highlight">
-
-                <strong>
-                    Svarbu:
-                </strong>
-
-                kartais žmogus atidėlioja ne todėl, kad yra tingus,
-                o todėl, kad pati užduotis jam sukelia nemalonius jausmus.
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- RYŠYS -->
-
-    <section id="rysys">
-
-        <h2 class="section-title">
-            Kaip perfekcionizmas ir prokrastinacija yra susiję?
-        </h2>
-
-        <div class="content-box">
-
-            <p>
-                Iš pirmo žvilgsnio perfekcionizmas ir prokrastinacija gali
-                atrodyti kaip priešingi dalykai. Perfekcionistas nori viską
-                atlikti nepriekaištingai, o prokrastinuojantis žmogus
-                užduotį atideda.
-            </p>
-
-            <p>
-                Tačiau tam tikrais atvejais šie reiškiniai gali būti
-                glaudžiai susiję.
-            </p>
-
-            <p>
-                Pavyzdžiui, mokinys gali norėti parašyti nepriekaištingą darbą.
-                Kadangi bijo padaryti klaidų arba mano, kad jo darbas nebus
-                pakankamai geras, jam tampa sunku pradėti. Todėl užduotis
-                atidedama, o artėjant terminui atsiranda dar daugiau streso.
-                Galiausiai darbą tenka atlikti skubant.
-            </p>
-
-        </div>
-
-
-        <div class="content-box">
-
-            <h3 style="text-align: center;">
-                Galimas užburtas ratas
-            </h3>
-
-            <div class="cycle">
-
-                <div class="cycle-step">
-                    Labai aukšti reikalavimai
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="cycle-step">
-                    Baimė suklysti
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="cycle-step">
-                    Užduoties atidėliojimas
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="cycle-step">
-                    Laiko trūkumas
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="cycle-step">
-                    Didesnis stresas
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="cycle-step">
-                    Skubotas darbas
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="highlight">
-
-            <strong>
-                Tačiau:
-            </strong>
-
-            ne kiekvienas perfekcionistas yra prokrastinatorius ir ne kiekvienas
-            prokrastinatorius yra perfekcionistas. Šių reiškinių ryšys gali
-            priklausyti nuo žmogaus asmeninių savybių ir situacijos.
-
-        </div>
-
-    </section>
-
-
-    <!-- AKADEMINIAI REZULTATAI -->
-
-    <section id="akademiniai">
-
-        <h2 class="section-title">
-            Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams
-        </h2>
-
-        <p class="section-intro">
-            Perfekcionizmas ir prokrastinacija gali būti susiję su mokymusi
-            skirtingais būdais, tačiau jų poveikis nėra vienodas visiems žmonėms.
+        <p>
+            Pavyzdžiui, mokinys vietoj mokymosi pradeda naršyti socialiniuose
+            tinkluose, žiūrėti vaizdo įrašus ar užsiimti kita veikla.
+            Vėliau darbus tenka atlikti paskutinę minutę.
         </p>
 
-
-        <div class="cards">
-
-            <div class="card">
-
-                <h3>
-                    Adaptyvusis perfekcionizmas
-                </h3>
-
-                <p>
-                    Gali skatinti mokinį daugiau stengtis, atsakingai atlikti
-                    užduotis, mokytis iš klaidų ir siekti geresnių rezultatų.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Maladaptacinis perfekcionizmas
-                </h3>
-
-                <p>
-                    Nuolatinė baimė suklysti, savikritika ir spaudimas sau
-                    gali didinti stresą ir apsunkinti užduočių atlikimą.
-                </p>
-
-                <p>
-                    Kai kuriais atvejais dėl to mokinys gali pradėti vengti
-                    užduočių arba jas atidėlioti.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Prokrastinacija
-                </h3>
-
-                <p>
-                    Atidėliojant užduotims atlikti lieka mažiau laiko.
-                    Dėl to jos gali būti atliekamos skubotai,
-                    nepakankamai kruopščiai arba apskritai nebaigiamos.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="content-box" style="margin-top: 30px;">
-
-            <h3>
-                Pažymius lemia ne vien perfekcionizmas ar prokrastinacija
-            </h3>
-
-            <p>
-                Pažymiai priklauso nuo daugybės veiksnių, todėl vien
-                perfekcionizmas ar prokrastinacija negali paaiškinti mokinio
-                akademinių rezultatų.
-            </p>
-
-            <p>
-                Mokymuisi įtakos gali turėti mokymosi įpročiai, motyvacija,
-                miego kokybė, stresas, aplinka, mokymosi sąlygos ir daugelis
-                kitų veiksnių.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- KODĖL SVARBU -->
-
-    <section id="svarbu">
-
-        <h2 class="section-title">
-            Kodėl svarbu apie tai kalbėti?
-        </h2>
-
-        <div class="content-box">
-
-            <p>
-                Perfekcionizmas ir prokrastinacija yra reiškiniai, su kuriais
-                gali susidurti įvairaus amžiaus žmonės, ypač mokiniai ir studentai.
-            </p>
-
-            <p>
-                Iš pirmo žvilgsnio labai aukšti reikalavimai sau gali atrodyti
-                kaip privalumas, o atidėliojimas – tiesiog tingėjimas.
-                Tačiau už tokio elgesio kartais slypi baimė suklysti,
-                stresas, per dideli lūkesčiai ar sunkumas susidoroti
-                su nemaloniomis emocijomis.
-            </p>
-
-            <p>
-                Geresnis šių reiškinių supratimas gali padėti žmogui atpažinti
-                savo elgesio priežastis ir ieškoti tinkamesnių būdų mokytis,
-                planuoti laiką bei siekti tikslų.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- TESTAS -->
-
-    <div class="test-section" id="testas">
-
-        <div class="test-container">
-
-            <h2>
-                Sužinok savo tipą
-            </h2>
-
-            <p>
-                Atlik testą ir sužinok, kaip tavo atsakymai gali būti susiję
-                su perfekcionizmu bei prokrastinacija.
-            </p>
-
-            <div class="test-placeholder">
-
-                <p>
-                    Testas netrukus bus čia.
-                </p>
-
-                <p>
-                    Atsakyk į klausimus ir gauk individualų rezultatą
-                    bei rekomendacijas.
-                </p>
-
-            </div>
-
-        </div>
-
+        <p>
+            Prokrastinacija ne visada reiškia tinginystę. Nors žmogus gali
+            tiesiog nenorėti atlikti užduoties, atidėliojimą taip pat gali
+            lemti įvairūs psichologiniai veiksniai.
+        </p>
     </div>
 
+    <div class="panel">
+        <h3>Kas gali lemti prokrastinaciją?</h3>
 
-    <!-- APAČIA -->
+        <ul class="content-list">
+            <li>Baimė suklysti.</li>
+            <li>Per dideli lūkesčiai sau.</li>
+            <li>Užduoties sudėtingumas.</li>
+            <li>Motyvacijos trūkumas.</li>
+            <li>Stresas.</li>
+            <li>Sunkumas pradėti didelę ar neaiškią užduotį.</li>
+            <li>Noras išvengti nemalonių emocijų.</li>
+        </ul>
 
-    <footer>
+        <div class="note">
+            Todėl kartais žmogus atidėlioja ne todėl, kad yra tingus,
+            o todėl, kad pati užduotis jam sukelia nemalonius jausmus.
+        </div>
+    </div>
+</section>
 
+<section id="rysys">
+    <p class="section-label">04 · Tarpusavio sąsajos</p>
+    <h2>Kaip perfekcionizmas ir prokrastinacija yra susiję?</h2>
+
+    <div class="panel">
         <p>
-            Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams
+            Iš pirmo žvilgsnio perfekcionizmas ir prokrastinacija gali atrodyti
+            kaip priešingi dalykai. Perfekcionistas nori viską atlikti
+            nepriekaištingai, o prokrastinuojantis žmogus užduotį atideda.
+            Tačiau tam tikrais atvejais šie reiškiniai gali būti glaudžiai susiję.
         </p>
 
         <p>
-            Mokyklinis tyrimo projektas
+            Pavyzdžiui, mokinys gali norėti parašyti nepriekaištingą darbą.
+            Kadangi bijo padaryti klaidų arba mano, kad jo darbas nebus
+            pakankamai geras, jam tampa sunku pradėti. Todėl užduotis atidedama,
+            o artėjant terminui atsiranda dar daugiau streso.
+            Galiausiai darbą tenka atlikti skubant.
+        </p>
+    </div>
+
+    <div class="panel">
+        <h3 style="text-align: center;">Galimas užburtas ratas</h3>
+
+        <div class="cycle">
+            <div class="cycle-step">Labai aukšti reikalavimai</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Baimė suklysti</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Užduoties atidėliojimas</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Laiko trūkumas</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Didesnis stresas</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Skubotas darbas</div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Tačiau svarbu prisiminti:</strong>
+        ne kiekvienas perfekcionistas yra prokrastinatorius ir ne kiekvienas
+        prokrastinatorius yra perfekcionistas. Šių reiškinių ryšys gali
+        priklausyti nuo žmogaus asmeninių savybių ir situacijos.
+    </div>
+</section>
+
+<section id="rezultatai">
+    <p class="section-label">05 · Mokymasis ir pažymiai</p>
+    <h2>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</h2>
+
+    <p class="section-intro">
+        Šie reiškiniai gali būti susiję tiek su mokymosi motyvacija,
+        tiek su sunkumais atliekant užduotis. Jų poveikis gali skirtis.
+    </p>
+
+    <div class="grid">
+        <article class="card">
+            <h3>Adaptyvusis perfekcionizmas</h3>
+            <p>
+                Gali skatinti mokinį daugiau stengtis, atsakingai atlikti
+                užduotis, mokytis iš klaidų ir siekti geresnių rezultatų.
+            </p>
+        </article>
+
+        <article class="card">
+            <h3>Maladaptacinis perfekcionizmas</h3>
+            <p>
+                Nuolatinė baimė suklysti, savikritika ir spaudimas sau
+                gali didinti stresą ir apsunkinti užduočių atlikimą.
+                Kai kuriais atvejais dėl to mokinys gali pradėti vengti
+                užduočių arba jas atidėlioti.
+            </p>
+        </article>
+
+        <article class="card wide-card">
+            <h3>Prokrastinacija</h3>
+            <p>
+                Prokrastinacija dažnai gali būti susijusi su prastesniais
+                akademiniais rezultatais, nes atidėliojant užduotims atlikti
+                lieka mažiau laiko. Dėl to jos gali būti atliekamos skubotai,
+                nepakankamai kruopščiai arba apskritai nebaigiamos.
+            </p>
+        </article>
+    </div>
+
+    <div class="panel">
+        <h3>Pažymius lemia daugybė veiksnių</h3>
+        <p>
+            Vis dėlto pažymiai priklauso nuo daugybės veiksnių, todėl vien
+            perfekcionizmas ar prokrastinacija negali paaiškinti mokinio
+            akademinių rezultatų.
         </p>
 
-    </footer>
+        <p>
+            Mokymuisi įtakos gali turėti mokymosi įpročiai, motyvacija,
+            miego kokybė, stresas, aplinka, mokymosi sąlygos ir daugelis
+            kitų veiksnių.
+        </p>
+    </div>
+</section>
+
+<section id="svarba">
+    <p class="section-label">06 · Temos aktualumas</p>
+    <h2>Kodėl svarbu apie tai kalbėti?</h2>
+
+    <div class="panel">
+        <p>
+            Perfekcionizmas ir prokrastinacija yra reiškiniai, su kuriais
+            gali susidurti įvairaus amžiaus žmonės, ypač mokiniai ir studentai.
+            Iš pirmo žvilgsnio labai aukšti reikalavimai sau gali atrodyti
+            kaip privalumas, o atidėliojimas – tiesiog tingėjimas.
+        </p>
+
+        <p>
+            Tačiau už tokio elgesio kartais slypi baimė suklysti, stresas,
+            per dideli lūkesčiai ar sunkumas susidoroti su nemaloniomis emocijomis.
+        </p>
+
+        <p>
+            Geresnis šių reiškinių supratimas gali padėti žmogui atpažinti
+            savo elgesio priežastis ir ieškoti tinkamesnių būdų mokytis,
+            planuoti laiką bei siekti tikslų.
+        </p>
+    </div>
+</section>
+
+<section class="test-area" id="testas">
+    <div class="test-inner">
+        <p class="section-label">07 · Interaktyvus testas</p>
+        <h2>Geriau pažink savo mokymosi įpročius</h2>
+
+        <p class="section-intro">
+            Šioje svetainės dalyje bus galima atsakyti į klausimus,
+            susijusius su perfekcionizmu ir prokrastinacija.
+        </p>
+
+        <div class="test-box">
+            <h3>Testas ruošiamas</h3>
+            <p>
+                Kai bus paruošti klausimai ir atsakymų variantai,
+                čia atsiras testas su automatiškai apskaičiuojamu
+                rezultatu ir rekomendacijomis.
+            </p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p><strong>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</strong></p>
+    <p>Mokyklinis tyrimo projektas</p>
+</footer>
 
 </body>
 </html>
+```
