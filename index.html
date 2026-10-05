@@ -497,6 +497,107 @@ h3 {
     font-size: 13px;
 }
 
+
+/* ANONIMIŠKUMAS IR VIEŠA STATISTIKA */
+
+.privacy-box {
+    margin: 28px 0 10px;
+    padding: 24px;
+    background: var(--pink-soft);
+    border: 1px solid var(--pink-border);
+    border-radius: 15px;
+    text-align: left;
+}
+
+.privacy-box h3 {
+    margin-bottom: 12px;
+}
+
+.privacy-box p {
+    margin-bottom: 12px;
+    color: var(--muted);
+}
+
+.consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.consent-label input {
+    margin-top: 6px;
+    transform: scale(1.25);
+}
+
+#startQuizButton:disabled {
+    background: #d7c5cc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.statistics-summary {
+    text-align: center;
+}
+
+.participant-number {
+    font-size: 58px;
+    line-height: 1;
+    font-weight: bold;
+    color: var(--pink);
+    margin: 15px 0 8px;
+}
+
+.public-stat-item {
+    margin: 28px 0;
+}
+
+.public-stat-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.public-stat-track {
+    width: 100%;
+    height: 15px;
+    background: #f4dce5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.public-stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ee8aae, #ce4279);
+    border-radius: 20px;
+}
+
+.profile-stat-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f2dfe6;
+}
+
+.profile-stat-row:last-child {
+    border-bottom: none;
+}
+
+.profile-percentage {
+    color: var(--pink-dark);
+    font-weight: bold;
+}
+
+.stats-status {
+    text-align: center;
+    color: var(--muted);
+}
+
 /* FOOTER */
 
 footer {
@@ -591,6 +692,7 @@ footer p + p {
             <li><a href="#rezultatai">Akademiniai rezultatai</a></li>
             <li><a href="#svarba">Kodėl svarbu?</a></li>
             <li><a href="#testas">Testas</a></li>
+            <li><a href="#statistika">Statistika</a></li>
         </ul>
     </div>
 </nav>
@@ -677,7 +779,7 @@ footer p + p {
                 ir yra linkęs griežtai save kritikuoti.
             </p>
             <p>
-                Net ir pasiekęs gerą rezultatą žmogus gali manyti, kad galėjo
+                Net ir pasiekus gerą rezultatą žmogui gali atrodyti, kad buvo galima
                 padaryti dar geriau. Tai gali būti susiję su stresu, nerimu,
                 nepasitenkinimu savimi ir mokymosi sunkumais.
             </p>
@@ -921,7 +1023,34 @@ footer p + p {
                 aukšti reikalavimai kitiems ir polinkis atidėlioti užduotis.
             </p>
 
-            <button class="button" onclick="startQuiz()">Pradėti testą</button>
+            <div class="privacy-box">
+                <h3>🔒 Apie testo anonimiškumą</h3>
+                <p>
+                    Testo metu neprašoma pateikti vardo, pavardės, el. pašto adreso
+                    ar kitų tiesiogiai asmenį identifikuojančių duomenų.
+                </p>
+                <p>
+                    Testo rezultatai išsaugomi ir naudojami tik apibendrintai
+                    šio mokyklinio projekto statistikai. Svetainėje viešai rodoma
+                    tik bendra visų užpildymų statistika, o ne individualūs atsakymai.
+                </p>
+
+                <label class="consent-label">
+                    <input type="checkbox"
+                           id="consentCheckbox"
+                           onchange="updateConsent()">
+                    <span>
+                        Susipažinau su informacija ir sutinku anonimiškai dalyvauti teste.
+                    </span>
+                </label>
+            </div>
+
+            <button class="button"
+                    id="startQuizButton"
+                    onclick="startQuiz()"
+                    disabled>
+                Pradėti testą
+            </button>
 
             <p class="test-small">
                 Atsakyk kuo nuoširdžiau. Čia nėra teisingų ar neteisingų atsakymų.
@@ -989,6 +1118,46 @@ footer p + p {
 </div>
 </section>
 
+
+<!-- VIEŠA STATISTIKA -->
+
+<section id="statistika">
+    <p class="section-label">08 - Bendri rezultatai</p>
+    <h2>Testo rezultatų statistika</h2>
+
+    <p class="section-intro">
+        Čia pateikiami apibendrinti visų testą užpildžiusių žmonių rezultatai.
+        Individualūs atsakymai viešai nerodomi.
+    </p>
+
+    <div class="panel statistics-summary">
+        <h3>Testas užpildytas</h3>
+        <div class="participant-number" id="participantCount">–</div>
+        <p>kartų</p>
+    </div>
+
+    <div class="panel">
+        <h3 style="text-align:center;">Bendri skalių vidurkiai</h3>
+        <div id="publicAverages">
+            <p class="stats-status">Kraunama statistika...</p>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3 style="text-align:center;">Dažniausiai pasitaikantys profiliai</h3>
+        <div id="publicProfiles">
+            <p class="stats-status">Kraunama statistika...</p>
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        Statistika apskaičiuojama iš anoniminių testo rezultatų ir pateikiama
+        tik apibendrinta forma. Kadangi nerenkami asmens identifikavimo duomenys,
+        rodomas testo užpildymų, o ne unikalių dalyvių skaičius.
+        Ši statistika nėra diagnostinė informacija.
+    </div>
+</section>
+
 </main>
 
 <footer>
@@ -998,20 +1167,31 @@ footer p + p {
 
 <script>
 
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxNyFq49lBIdZeAe50qc7rt_IAVrj0xwUfep2AGOVBUSANgn1aMUc3DGLBLynEWiXKk/exec";
+let resultSaved = false;
+
+function updateConsent() {
+    const checkbox = document.getElementById("consentCheckbox");
+    const button = document.getElementById("startQuizButton");
+    button.disabled = !checkbox.checked;
+}
+
+
 /* KLAUSIMAI */
 
 const questions = [
     "Iš savęs reikalauju labai aukštų rezultatų.",
-    "Man sunku būti patenkintai savo darbu, jei žinau, kad galėjau jį atlikti geriau.",
+    "Man sunku jausti pasitenkinimą savo darbu, jei žinau, kad galėjau jį atlikti geriau.",
     "Man sunku priimti savo klaidas.",
-    "Net gavusi gerą rezultatą kartais jaučiu, kad jis nėra pakankamai geras.",
+    "Net ir geras rezultatas kartais man atrodo nepakankamai geras.",
     "Jaučiu, kad mano atliktas darbas turi būti beveik nepriekaištingas.",
 
     "Jaučiu, kad kiti žmonės iš manęs tikisi labai gerų rezultatų.",
     "Bijau nuvilti žmones, kurie iš manęs daug tikisi.",
     "Kai suklystu, nerimauju dėl to, ką apie mane pagalvos kiti.",
     "Jaučiu spaudimą atitikti kitų žmonių lūkesčius.",
-    "Man atrodo, kad turiu būti labai sėkminga, kad kiti mane vertintų.",
+    "Man atrodo, kad turiu pasiekti labai gerų rezultatų, kad kiti mane vertintų.",
 
     "Mane erzina, kai kiti žmonės neatlieka darbo taip gerai, kaip galėtų.",
     "Iš kitų žmonių dažnai tikiuosi labai aukštų standartų.",
@@ -1044,6 +1224,7 @@ function startQuiz() {
     document.getElementById("quizScreen").style.display = "block";
 
     currentQuestion = 0;
+    resultSaved = false;
     showQuestion();
 }
 
@@ -1180,6 +1361,11 @@ function calculateResult() {
 
     const result = chooseResult(scores);
 
+    if (!resultSaved) {
+        resultSaved = true;
+        saveAnonymousResult(scores, result);
+    }
+
     showResult(result, scores);
 }
 
@@ -1283,13 +1469,13 @@ const results = {
         summary:
             "Tavo atsakymai nerodo ryškaus vienos vertinamos tendencijos dominavimo.",
         description:
-            "Atrodo, kad dažniausiai gebi gana lanksčiai vertinti savo darbo rezultatus ir nesi stipriai linkęs sistemingai atidėlioti svarbių užduočių. Tai nereiškia, kad niekada nesusiduri su aukštais reikalavimais ar atidėliojimu - skirtingose situacijose tavo elgesys gali skirtis.",
+            "Atrodo, kad dažniausiai gebi gana lanksčiai vertinti savo darbo rezultatus ir tavo atsakymuose nėra ryškaus sistemingo svarbių užduočių atidėliojimo. Tai nereiškia, kad niekada nesusiduri su aukštais reikalavimais ar atidėliojimu - skirtingose situacijose tavo elgesys gali skirtis.",
         advice: [
             "Toliau kelk sau realistiškus ir pasiekiamus tikslus.",
             "Dideles užduotis skaidyk į mažesnius etapus.",
             "Palik pakankamai laiko poilsiui.",
             "Vertink ne tik galutinį rezultatą, bet ir savo pažangą.",
-            "Pastebėjęs, kad reikalavimai sau didėja, prisimink, kad gerai atliktas darbas neprivalo būti tobulas."
+            "Kai reikalavimai sau didėja, prisimink, kad gerai atliktas darbas neprivalo būti tobulas."
         ]
     },
 
@@ -1300,7 +1486,7 @@ const results = {
         description:
             "Tau gali būti svarbu darbą atlikti kuo geriau. Kartais gali būti sunku priimti savo klaidas arba pasitenkinti rezultatu, jei žinai, kad teoriškai galėjai padaryti dar geriau. Aukšti standartai savaime nėra blogas dalykas - jie gali skatinti stengtis ir siekti tikslų. Sunkumų gali atsirasti tada, kai gerai atliktas darbas pradeda atrodyti nepakankamai geras.",
         advice: [
-            "Prieš pradėdamas darbą nusistatyk, koks rezultatas bus pakankamai geras.",
+            "Prieš pradedant darbą nusistatyk, koks rezultatas bus pakankamai geras.",
             "Nustatyk konkrečią darbo laiko ribą.",
             "Paklausk savęs: ar aš dar gerinu rezultatą, ar jau bandau jį padaryti tobulą?",
             "Vertink ne tik galutinį rezultatą, bet ir įdėtas pastangas bei pažangą.",
@@ -1319,7 +1505,7 @@ const results = {
             "Paklausk savęs: ar žmogus tikrai to iš manęs reikalauja, ar aš tik manau, kad jis to reikalauja?",
             "Atskirk savo tikslus nuo kitų žmonių lūkesčių.",
             "Primink sau, kad viena klaida neapibrėžia tavo gebėjimų ar vertės.",
-            "Prieš atlikdamas užduotį pagalvok, ko pats nori išmokti ar pasiekti.",
+            "Prieš atliekant užduotį pagalvok, ko nori išmokti ar pasiekti.",
             "Jei bijai neigiamo vertinimo, pagalvok apie realiausią, o ne blogiausią galimą situaciją.",
             "Atkreipk dėmesį, kada stengiesi dėl savęs, o kada tik dėl kitų pritarimo."
         ]
@@ -1333,7 +1519,7 @@ const results = {
             "Tau gali būti svarbu, kad kiti žmonės stengtųsi ir savo darbą atliktų kokybiškai. Todėl gali erzinti situacijos, kai matai, kad žmogus galėjo padaryti geriau, tačiau, tavo nuomone, neįdėjo pakankamai pastangų. Kartais dėl to gali būti sunkiau priimti kitų žmonių klaidas arba kitokį darbo būdą.",
         advice: [
             "Prisimink, kad kitaip nebūtinai reiškia blogiau.",
-            "Paklausk savęs: ar rezultatas iš tikrųjų netinkamas, ar jis tiesiog ne toks, kaip būčiau padaręs aš?",
+            "Paklausk savęs: ar rezultatas iš tikrųjų netinkamas, ar jis tiesiog skiriasi nuo to, kaip tai atlikčiau aš?",
             "Vertink ne tik rezultatą, bet ir žmogaus pastangas bei aplinkybes.",
             "Grupiniame darbe iš anksto susitarkite dėl bendrų darbo standartų.",
             "Leisk kitiems atlikti savo darbo dalį jų pasirinktu būdu.",
@@ -1346,13 +1532,13 @@ const results = {
         summary:
             "Tavo atsakymai rodo polinkį atidėlioti svarbias užduotis.",
         description:
-            "Gali būti, kad svarbias užduotis kartais atidedi, nors žinai, kad vėliau dėl to gali būti sunkiau. Tau gali būti sunku pradėti užduotį, todėl atsiranda kitų, tuo metu patrauklesnių veiklų arba lauki tinkamos nuotaikos. Atidėliojimas gali sukelti papildomą stresą ar kaltės jausmą. Šis rezultatas nereiškia, kad esi tingus - jis tik parodo tavo atsakymuose matomą atidėliojimo tendenciją.",
+            "Gali būti, kad svarbias užduotis kartais atidedi, nors žinai, kad vėliau dėl to gali būti sunkiau. Tau gali būti sunku pradėti užduotį, todėl atsiranda kitų, tuo metu patrauklesnių veiklų arba lauki tinkamos nuotaikos. Atidėliojimas gali sukelti papildomą stresą ar kaltės jausmą. Šis rezultatas nereiškia tinginystės - jis tik parodo tavo atsakymuose matomą atidėliojimo tendenciją.",
         advice: [
             "Išbandyk 5 minučių taisyklę - nuspręsk dirbti tik 5 minutes. Svarbiausia pradėti.",
             "Dideles užduotis suskaidyk į mažus ir konkrečius veiksmus.",
             "Nustatyk ne tik galutinį terminą, bet ir konkretų darbo pradžios laiką.",
             "Išbandyk 25 minučių darbo ir 5 minučių pertraukos principą.",
-            "Dirbdamas pašalink lengviausiai pasiekiamus trukdžius, pavyzdžiui, telefoną.",
+            "Darbo metu pašalink lengviausiai pasiekiamus trukdžius, pavyzdžiui, telefoną.",
             "Nelauk tinkamos nuotaikos - motyvacija kartais atsiranda jau pradėjus dirbti."
         ]
     },
@@ -1369,7 +1555,7 @@ const results = {
             "Didelę užduotį sumažink iki vieno 5-10 minučių veiksmo.",
             "Iš anksto nusistatyk, kada darbas bus pakankamai geras.",
             "Ribok taisymų skaičių, pavyzdžiui, nuspręsk darbą pataisyti tik du kartus.",
-            "Pastebėjęs mintį „dar nesu pasiruošęs“, pradėk nuo lengviausios užduoties dalies."
+            "Kai kyla mintis „dar ne laikas pradėti“, pradėk nuo lengviausios užduoties dalies."
         ]
     },
 
@@ -1385,7 +1571,7 @@ const results = {
             "Stenkis koncentruotis į pačią užduotį, o ne į būsimą kitų žmonių vertinimą.",
             "Leisk sau pateikti gerą darbą, net jei jis nėra nepriekaištingas.",
             "Pradėk nuo mažos užduoties dalies, kurios dar niekam nereikia rodyti.",
-            "Baigęs darbą pirmiausia paklausk: ką jau padariau? Tik tada galvok, ką dar galėtum pagerinti."
+            "Baigus darbą pirmiausia verta paklausti: ką jau padariau? Tik tada pagalvoti, ką dar galima pagerinti."
         ]
     },
 
@@ -1504,6 +1690,10 @@ function restartQuiz() {
         new Array(questions.length).fill(null);
 
     currentQuestion = 0;
+    resultSaved = false;
+
+    document.getElementById("consentCheckbox").checked = false;
+    updateConsent();
 
     document.getElementById("resultScreen").style.display =
         "none";
@@ -1515,6 +1705,144 @@ function restartQuiz() {
         behavior: "smooth"
     });
 }
+
+
+/* ANONIMINIO REZULTATO IŠSAUGOJIMAS */
+
+async function saveAnonymousResult(scores, result) {
+    try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                self: scores.self,
+                social: scores.social,
+                others: scores.others,
+                procrastination: scores.procrastination,
+                result: result.title
+            })
+        });
+
+        setTimeout(loadPublicStatistics, 800);
+
+    } catch (error) {
+        console.error("Nepavyko išsaugoti anoniminio rezultato:", error);
+    }
+}
+
+
+/* VIEŠOS STATISTIKOS ĮKĖLIMAS */
+
+async function loadPublicStatistics() {
+    const countElement = document.getElementById("participantCount");
+    const averagesContainer = document.getElementById("publicAverages");
+    const profilesContainer = document.getElementById("publicProfiles");
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL);
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.error || "Nepavyko gauti statistikos.");
+        }
+
+        countElement.textContent = data.count;
+
+        if (data.count === 0) {
+            averagesContainer.innerHTML =
+                '<p class="stats-status">Kol kas nėra surinktų rezultatų.</p>';
+
+            profilesContainer.innerHTML =
+                '<p class="stats-status">Kol kas nėra surinktų rezultatų.</p>';
+
+            return;
+        }
+
+        const categories = [
+            {
+                name: "Aukšti standartai sau",
+                value: Number(data.averages.self)
+            },
+            {
+                name: "Kitų lūkesčių spaudimas",
+                value: Number(data.averages.social)
+            },
+            {
+                name: "Aukšti reikalavimai kitiems",
+                value: Number(data.averages.others)
+            },
+            {
+                name: "Polinkis atidėlioti",
+                value: Number(data.averages.procrastination)
+            }
+        ];
+
+        averagesContainer.innerHTML = "";
+
+        categories.forEach(category => {
+            const percentage = Math.max(
+                0,
+                Math.min(100, (category.value / 5) * 100)
+            );
+
+            averagesContainer.innerHTML += `
+                <div class="public-stat-item">
+                    <div class="public-stat-header">
+                        <span>${category.name}</span>
+                        <span>${category.value.toFixed(1)} / 5</span>
+                    </div>
+
+                    <div class="public-stat-track">
+                        <div class="public-stat-fill"
+                             style="width:${percentage}%;">
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        profilesContainer.innerHTML = "";
+
+        const sortedProfiles =
+            Object.entries(data.results || {})
+                  .sort((a, b) => b[1] - a[1]);
+
+        if (sortedProfiles.length === 0) {
+            profilesContainer.innerHTML =
+                '<p class="stats-status">Kol kas nėra profilių duomenų.</p>';
+        } else {
+            sortedProfiles.forEach(([name, amount]) => {
+                const percentage =
+                    (Number(amount) / Number(data.count)) * 100;
+
+                profilesContainer.innerHTML += `
+                    <div class="profile-stat-row">
+                        <span>${name}</span>
+                        <span class="profile-percentage">
+                            ${percentage.toFixed(1)} %
+                        </span>
+                    </div>
+                `;
+            });
+        }
+
+    } catch (error) {
+        console.error("Statistikos įkėlimo klaida:", error);
+
+        countElement.textContent = "–";
+
+        averagesContainer.innerHTML =
+            '<p class="stats-status">Nepavyko įkelti statistikos.</p>';
+
+        profilesContainer.innerHTML =
+            '<p class="stats-status">Nepavyko įkelti statistikos.</p>';
+    }
+}
+
+loadPublicStatistics();
+
 
 </script>
 
