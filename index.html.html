@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</title>
+
+<style>
+:root {
+    --pink: #d94f86;
+    --pink-dark: #9f315f;
+    --pink-deep: #67213f;
+    --pink-light: #fde8f0;
+    --pink-soft: #fff4f8;
+    --pink-border: #f3cad9;
+    --background: #fff9fb;
+    --text: #352b30;
+    --muted: #71636a;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.8;
+}
+
+/* NAVIGACIJA */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--pink-border);
+    padding: 16px 5%;
+    box-shadow: 0 3px 18px rgba(140, 50, 90, 0.06);
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    color: var(--pink-dark);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--pink);
+}
+
+/* PAGRINDINIS */
+
+.hero {
+    padding: 110px 24px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top left, #ffdbe8, transparent 55%),
+        radial-gradient(ellipse at bottom right, #f8cddd, transparent 55%),
+        #fff5f8;
+}
+
+.hero-inner {
+    max-width: 950px;
+    margin: auto;
+}
+
+.eyebrow {
+    color: var(--pink);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    color: var(--pink-deep);
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.18;
+    margin-bottom: 26px;
+}
+
+.hero p {
+    max-width: 760px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 18px;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 14px 28px;
+    background: var(--pink);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background: var(--pink-dark);
+    transform: translateY(-2px);
+}
+
+/* BENDRAS TURINYS */
+
+section {
+    max-width: 1050px;
+    margin: auto;
+    padding: 78px 24px;
+}
+
+.section-label {
+    color: var(--pink);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+h2 {
+    color: var(--pink-deep);
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+h3 {
+    color: var(--pink-dark);
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.section-intro {
+    max-width: 790px;
+    margin: 0 auto 36px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.panel {
+    background: var(--white);
+    border: 1px solid #f4dce5;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 22px 0;
+    box-shadow: 0 8px 25px rgba(130, 45, 80, 0.06);
+}
+
+.panel p + p {
+    margin-top: 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #f4dce5;
+    border-radius: 16px;
+    padding: 27px;
+    box-shadow: 0 8px 25px rgba(130, 45, 80, 0.06);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(130, 45, 80, 0.10);
+}
+
+.card p + p {
+    margin-top: 13px;
+}
+
+.wide-card {
+    grid-column: 1 / -1;
+}
+
+.content-list {
+    padding-left: 25px;
+    margin-top: 12px;
+}
+
+.content-list li {
+    padding-left: 4px;
+    margin-bottom: 8px;
+}
+
+.note {
+    background: var(--pink-light);
+    border-left: 4px solid var(--pink);
+    border-radius: 10px;
+    padding: 23px 25px;
+    margin-top: 25px;
+}
+
+.note strong {
+    color: var(--pink-deep);
+}
+
+/* CIKLAS */
+
+.cycle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.cycle-step {
+    background: var(--pink-light);
+    color: var(--pink-deep);
+    border: 1px solid var(--pink-border);
+    border-radius: 10px;
+    padding: 13px 15px;
+    text-align: center;
+    font-weight: bold;
+    flex: 1 1 125px;
+}
+
+.cycle-arrow {
+    color: var(--pink);
+    font-size: 23px;
+    font-weight: bold;
+}
+
+/* TESTAS */
+
+.test-area {
+    max-width: none;
+    background: linear-gradient(180deg, #fff3f7, #fde7ef);
+}
+
+.test-inner {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.test-box {
+    background: white;
+    border-radius: 22px;
+    padding: 45px;
+    margin-top: 28px;
+    box-shadow: 0 15px 45px rgba(135, 45, 80, 0.10);
+    border: 1px solid #f4d7e2;
+}
+
+.test-info {
+    color: var(--muted);
+    margin: 15px auto;
+    max-width: 650px;
+}
+
+.test-small {
+    font-size: 14px;
+    color: #88757e;
+    margin-top: 18px;
+}
+
+/* KLAUSIMAI */
+
+#quizScreen,
+#resultScreen {
+    display: none;
+}
+
+.question-number {
+    color: var(--pink);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.progress-container {
+    width: 100%;
+    height: 9px;
+    background: #f6dce5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 5%;
+    background: linear-gradient(90deg, #ef82a9, #cf447c);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.question-text {
+    color: var(--pink-deep);
+    font-size: 25px;
+    line-height: 1.45;
+    margin-bottom: 30px;
+}
+
+.answers {
+    display: grid;
+    gap: 12px;
+}
+
+.answer {
+    width: 100%;
+    background: white;
+    border: 2px solid var(--pink-border);
+    color: var(--text);
+    padding: 15px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.answer:hover {
+    border-color: var(--pink);
+    background: var(--pink-soft);
+}
+
+.answer.selected {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: white;
+    font-weight: bold;
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.nav-button {
+    border: none;
+    border-radius: 10px;
+    padding: 13px 22px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.back-button {
+    background: #f4e4ea;
+    color: var(--pink-dark);
+}
+
+.next-button {
+    background: var(--pink);
+    color: white;
+}
+
+.next-button:hover {
+    background: var(--pink-dark);
+}
+
+.next-button:disabled {
+    background: #d7c5cc;
+    cursor: not-allowed;
+}
+
+/* REZULTATAI */
+
+.result-title {
+    font-size: 32px;
+    color: var(--pink-deep);
+    margin-bottom: 15px;
+}
+
+.result-summary {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--pink-dark);
+    margin-bottom: 20px;
+}
+
+.result-description {
+    text-align: left;
+    margin: 20px 0 30px;
+}
+
+.advice-box {
+    text-align: left;
+    background: var(--pink-soft);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.advice-box h3 {
+    margin-bottom: 15px;
+}
+
+.advice-box ul {
+    padding-left: 22px;
+}
+
+.advice-box li {
+    margin-bottom: 10px;
+}
+
+.profile {
+    margin: 35px 0;
+    text-align: left;
+}
+
+.profile h3 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.profile-item {
+    margin-bottom: 22px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.profile-track {
+    width: 100%;
+    height: 12px;
+    background: #f4dce5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.profile-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ee8aae, #ce4279);
+    border-radius: 20px;
+}
+
+.disclaimer {
+    margin-top: 30px;
+    padding: 18px;
+    background: #faf5f7;
+    border-radius: 10px;
+    color: #75656c;
+    font-size: 13px;
+}
+
+
+/* ANONIMIŠKUMAS IR VIEŠA STATISTIKA */
+
+.privacy-box {
+    margin: 28px 0 10px;
+    padding: 24px;
+    background: var(--pink-soft);
+    border: 1px solid var(--pink-border);
+    border-radius: 15px;
+    text-align: left;
+}
+
+.privacy-box h3 {
+    margin-bottom: 12px;
+}
+
+.privacy-box p {
+    margin-bottom: 12px;
+    color: var(--muted);
+}
+
+.consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.consent-label input {
+    margin-top: 6px;
+    transform: scale(1.25);
+}
+
+#startQuizButton:disabled {
+    background: #d7c5cc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.statistics-summary {
+    text-align: center;
+}
+
+.participant-number {
+    font-size: 58px;
+    line-height: 1;
+    font-weight: bold;
+    color: var(--pink);
+    margin: 15px 0 8px;
+}
+
+.public-stat-item {
+    margin: 28px 0;
+}
+
+.public-stat-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.public-stat-track {
+    width: 100%;
+    height: 15px;
+    background: #f4dce5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.public-stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ee8aae, #ce4279);
+    border-radius: 20px;
+}
+
+.profile-stat-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f2dfe6;
+}
+
+.profile-stat-row:last-child {
+    border-bottom: none;
+}
+
+.profile-percentage {
+    color: var(--pink-dark);
+    font-weight: bold;
+}
+
+.stats-status {
+    text-align: center;
+    color: var(--muted);
+}
+
+/* FOOTER */
+
+footer {
+    background: var(--pink-deep);
+    color: #fff4f8;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+footer p + p {
+    margin-top: 7px;
+    color: #f2cad9;
+    font-size: 14px;
+}
+
+/* TELEFONAI */
+
+@media (max-width: 760px) {
+    .nav-inner {
+        flex-direction: column;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 75px 22px;
+    }
+
+    section {
+        padding: 58px 20px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wide-card {
+        grid-column: auto;
+    }
+
+    .panel,
+    .card {
+        padding: 23px;
+    }
+
+    .cycle {
+        flex-direction: column;
+    }
+
+    .cycle-step {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .cycle-arrow {
+        transform: rotate(90deg);
+    }
+
+    .test-box {
+        padding: 28px 18px;
+    }
+
+    .question-text {
+        font-size: 21px;
+    }
+
+    .profile-header {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">Psichologija ir mokymasis</div>
+
+        <ul>
+            <li><a href="#tikslas">Darbo tikslas</a></li>
+            <li><a href="#perfekcionizmas">Perfekcionizmas</a></li>
+            <li><a href="#prokrastinacija">Prokrastinacija</a></li>
+            <li><a href="#rysys">Jų ryšys</a></li>
+            <li><a href="#rezultatai">Akademiniai rezultatai</a></li>
+            <li><a href="#svarba">Kodėl svarbu?</a></li>
+            <li><a href="#testas">Testas</a></li>
+            <li><a href="#statistika">Statistika</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-inner">
+        <p class="eyebrow">Mokinių mokymasis ir psichologija</p>
+
+        <h1>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</h1>
+
+        <p>
+            Kas skatina siekti tobulumo? Kodėl kartais atidėliojame svarbias
+            užduotis? Ir kaip šie reiškiniai gali būti susiję su mokymusi bei pažymiais?
+        </p>
+
+        <a class="button" href="#tikslas">Susipažinti su tema</a>
+    </div>
+</header>
+
+<main>
+
+<section id="tikslas">
+    <p class="section-label">01 - Tyrimo pristatymas</p>
+    <h2>Darbo tikslas</h2>
+
+    <div class="panel">
+        <p>
+            Šio darbo tikslas - praplėsti žmonių akiratį apie perfekcionizmą
+            ir prokrastinaciją, paaiškinti, kuo šie reiškiniai skiriasi ir kaip
+            jie gali būti tarpusavyje susiję.
+        </p>
+
+        <p>
+            Taip pat siekiama išsiaiškinti, kaip perfekcionizmas ir
+            prokrastinacija gali būti susiję su mokinių akademiniais
+            rezultatais bei pažymiais.
+        </p>
+    </div>
+</section>
+
+<section id="perfekcionizmas">
+    <p class="section-label">02 - Aukšti standartai</p>
+    <h2>Kas yra perfekcionizmas?</h2>
+
+    <p class="section-intro">
+        Perfekcionizmas - asmenybės bruožas, kuriam būdingas siekis
+        pasiekti labai aukštus standartus ir atlikti užduotis kuo geriau.
+    </p>
+
+    <div class="panel">
+        <p>
+            Perfekcionistui gali būti svarbu ne tik pasiekti gerą rezultatą,
+            bet ir išvengti klaidų.
+        </p>
+
+        <p>
+            Svarbu suprasti, kad perfekcionizmas ne visada yra neigiamas.
+            Jis gali padėti žmogui siekti tikslų, tačiau tam tikrais atvejais
+            labai aukšti reikalavimai sau gali sukelti stresą,
+            nepasitenkinimą savimi ar baimę suklysti.
+        </p>
+    </div>
+
+    <h2>Perfekcionizmo rūšys pagal poveikį</h2>
+
+    <div class="grid">
+        <article class="card">
+            <h3>Adaptyvusis perfekcionizmas</h3>
+            <p>
+                Tai perfekcionizmas, kai žmogus siekia aukštų rezultatų,
+                tačiau geba priimti klaidas kaip natūralią mokymosi proceso dalį.
+            </p>
+            <p>
+                Toks perfekcionizmas gali padėti žmogui išlikti motyvuotam,
+                planuoti savo laiką ir siekti geresnių rezultatų.
+            </p>
+        </article>
+
+        <article class="card">
+            <h3>Maladaptacinis perfekcionizmas</h3>
+            <p>
+                Tai perfekcionizmas, kai žmogus sau kelia itin aukštus arba
+                sunkiai pasiekiamus reikalavimus, stipriai bijo suklysti
+                ir yra linkęs griežtai save kritikuoti.
+            </p>
+            <p>
+                Net ir pasiekus gerą rezultatą žmogui gali atrodyti, kad buvo galima
+                padaryti dar geriau. Tai gali būti susiję su stresu, nerimu,
+                nepasitenkinimu savimi ir mokymosi sunkumais.
+            </p>
+        </article>
+    </div>
+
+    <h2 style="margin-top:55px;">Perfekcionizmo rūšys pagal nukreiptumą</h2>
+
+    <div class="grid">
+        <article class="card">
+            <h3>Į save nukreiptas perfekcionizmas</h3>
+            <p>
+                Žmogus sau kelia itin aukštus standartus ir griežtai
+                vertina savo klaidas bei trūkumus.
+            </p>
+        </article>
+
+        <article class="card">
+            <h3>Socialiai primestas perfekcionizmas</h3>
+            <p>
+                Žmogus jaučia, kad aplinkiniai iš jo tikisi tobulumo.
+                Tokie lūkesčiai gali būti siejami su tėvais, mokytojais,
+                draugais ar kitais svarbiais žmonėmis.
+            </p>
+            <p>
+                Dėl to gali atsirasti baimė nuvilti kitus, būti
+                sukritikuotam ar nepriimtam.
+            </p>
+        </article>
+
+        <article class="card wide-card">
+            <h3>Į kitus nukreiptas perfekcionizmas</h3>
+            <p>
+                Žmogus kelia labai aukštus reikalavimus aplinkiniams
+                ir tikisi, kad jie taip pat elgsis bei pasieks rezultatų
+                pagal jo nustatytus standartus.
+            </p>
+        </article>
+    </div>
+
+    <div class="note">
+        <strong>Svarbu paminėti:</strong>
+        šios klasifikacijos nėra visiškai atskiros. Pavyzdžiui, į save
+        nukreiptas perfekcionizmas gali būti ir adaptyvus, ir maladaptacinis -
+        tai priklauso nuo to, kaip žmogus reaguoja į savo klaidas ir nesėkmes.
+    </div>
+</section>
+
+<section id="prokrastinacija">
+    <p class="section-label">03 - Užduočių atidėliojimas</p>
+    <h2>Kas yra prokrastinacija?</h2>
+
+    <div class="panel">
+        <p>
+            Prokrastinacija - svarbių ar suplanuotų užduočių atidėliojimas,
+            nors žmogus žino, kad toks elgesys gali turėti neigiamų pasekmių.
+        </p>
+
+        <p>
+            Pavyzdžiui, mokinys vietoj mokymosi pradeda naršyti socialiniuose
+            tinkluose, žiūrėti vaizdo įrašus ar užsiimti kita veikla.
+            Vėliau darbus tenka atlikti paskutinę minutę.
+        </p>
+
+        <p>
+            Prokrastinacija ne visada reiškia tinginystę. Nors žmogus gali
+            tiesiog nenorėti atlikti užduoties, atidėliojimą taip pat gali
+            lemti įvairūs psichologiniai veiksniai.
+        </p>
+    </div>
+
+    <div class="panel">
+        <h3>Kas gali lemti prokrastinaciją?</h3>
+
+        <ul class="content-list">
+            <li>Baimė suklysti.</li>
+            <li>Per dideli lūkesčiai sau.</li>
+            <li>Užduoties sudėtingumas.</li>
+            <li>Motyvacijos trūkumas.</li>
+            <li>Stresas.</li>
+            <li>Sunkumas pradėti didelę ar neaiškią užduotį.</li>
+            <li>Noras išvengti nemalonių emocijų.</li>
+        </ul>
+
+        <div class="note">
+            Kartais žmogus atidėlioja ne todėl, kad yra tingus,
+            o todėl, kad pati užduotis jam sukelia nemalonius jausmus.
+        </div>
+    </div>
+</section>
+
+<section id="rysys">
+    <p class="section-label">04 - Tarpusavio sąsajos</p>
+    <h2>Kaip perfekcionizmas ir prokrastinacija yra susiję?</h2>
+
+    <div class="panel">
+        <p>
+            Iš pirmo žvilgsnio perfekcionizmas ir prokrastinacija gali atrodyti
+            kaip priešingi dalykai. Perfekcionistas nori viską atlikti
+            nepriekaištingai, o prokrastinuojantis žmogus užduotį atideda.
+            Tačiau tam tikrais atvejais šie reiškiniai gali būti glaudžiai susiję.
+        </p>
+
+        <p>
+            Pavyzdžiui, mokinys gali norėti parašyti nepriekaištingą darbą.
+            Kadangi bijo padaryti klaidų arba mano, kad jo darbas nebus
+            pakankamai geras, jam tampa sunku pradėti. Todėl užduotis atidedama,
+            o artėjant terminui atsiranda dar daugiau streso.
+            Galiausiai darbą tenka atlikti skubant.
+        </p>
+    </div>
+
+    <div class="panel">
+        <h3 style="text-align:center;">Galimas užburtas ratas</h3>
+
+        <div class="cycle">
+            <div class="cycle-step">Labai aukšti reikalavimai</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Baimė suklysti</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Užduoties atidėliojimas</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Laiko trūkumas</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Didesnis stresas</div>
+            <span class="cycle-arrow">→</span>
+            <div class="cycle-step">Skubotas darbas</div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Tačiau svarbu prisiminti:</strong>
+        ne kiekvienas perfekcionistas yra prokrastinatorius ir ne kiekvienas
+        prokrastinatorius yra perfekcionistas. Šių reiškinių ryšys gali
+        priklausyti nuo žmogaus asmeninių savybių ir situacijos.
+    </div>
+</section>
+
+<section id="rezultatai">
+    <p class="section-label">05 - Mokymasis ir pažymiai</p>
+    <h2>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</h2>
+
+    <p class="section-intro">
+        Šie reiškiniai gali būti susiję tiek su mokymosi motyvacija,
+        tiek su sunkumais atliekant užduotis. Jų poveikis gali skirtis.
+    </p>
+
+    <div class="grid">
+        <article class="card">
+            <h3>Adaptyvusis perfekcionizmas</h3>
+            <p>
+                Gali skatinti mokinį daugiau stengtis, atsakingai atlikti
+                užduotis, mokytis iš klaidų ir siekti geresnių rezultatų.
+            </p>
+        </article>
+
+        <article class="card">
+            <h3>Maladaptacinis perfekcionizmas</h3>
+            <p>
+                Nuolatinė baimė suklysti, savikritika ir spaudimas sau
+                gali didinti stresą ir apsunkinti užduočių atlikimą.
+                Kai kuriais atvejais dėl to mokinys gali pradėti vengti
+                užduočių arba jas atidėlioti.
+            </p>
+        </article>
+
+        <article class="card wide-card">
+            <h3>Prokrastinacija</h3>
+            <p>
+                Prokrastinacija dažnai gali būti susijusi su prastesniais
+                akademiniais rezultatais, nes atidėliojant užduotims atlikti
+                lieka mažiau laiko. Dėl to jos gali būti atliekamos skubotai,
+                nepakankamai kruopščiai arba apskritai nebaigiamos.
+            </p>
+        </article>
+    </div>
+
+    <div class="panel">
+        <h3>Pažymius lemia daugybė veiksnių</h3>
+        <p>
+            Vis dėlto pažymiai priklauso nuo daugybės veiksnių, todėl vien
+            perfekcionizmas ar prokrastinacija negali paaiškinti mokinio
+            akademinių rezultatų.
+        </p>
+
+        <p>
+            Mokymuisi įtakos gali turėti mokymosi įpročiai, motyvacija,
+            miego kokybė, stresas, aplinka, mokymosi sąlygos ir daugelis
+            kitų veiksnių.
+        </p>
+    </div>
+</section>
+
+<section id="svarba">
+    <p class="section-label">06 - Temos aktualumas</p>
+    <h2>Kodėl svarbu apie tai kalbėti?</h2>
+
+    <div class="panel">
+        <p>
+            Perfekcionizmas ir prokrastinacija yra reiškiniai, su kuriais
+            gali susidurti įvairaus amžiaus žmonės, ypač mokiniai ir studentai.
+            Iš pirmo žvilgsnio labai aukšti reikalavimai sau gali atrodyti
+            kaip privalumas, o atidėliojimas - tiesiog tingėjimas.
+        </p>
+
+        <p>
+            Tačiau už tokio elgesio kartais slypi baimė suklysti, stresas,
+            per dideli lūkesčiai ar sunkumas susidoroti su nemaloniomis emocijomis.
+        </p>
+
+        <p>
+            Geresnis šių reiškinių supratimas gali padėti žmogui atpažinti
+            savo elgesio priežastis ir ieškoti tinkamesnių būdų mokytis,
+            planuoti laiką bei siekti tikslų.
+        </p>
+    </div>
+</section>
+
+<!-- TESTAS -->
+
+<section class="test-area" id="testas">
+<div class="test-inner">
+
+    <p class="section-label">07 - Interaktyvus testas</p>
+    <h2>Geriau pažink savo mokymosi įpročius</h2>
+
+    <div class="test-box">
+
+        <!-- PRADŽIA -->
+
+        <div id="startScreen">
+            <h3>Atlik trumpą savęs vertinimo testą</h3>
+
+            <p class="test-info">
+                Atsakyk į 20 teiginių ir sužinok, kokios tendencijos labiausiai
+                atsispindi tavo atsakymuose.
+            </p>
+
+            <p class="test-info">
+                Teste vertinami aukšti standartai sau, kitų lūkesčių spaudimas,
+                aukšti reikalavimai kitiems ir polinkis atidėlioti užduotis.
+            </p>
+
+            <div class="privacy-box">
+                <h3>🔒 Apie testo anonimiškumą</h3>
+                <p>
+                    Testo metu neprašoma pateikti vardo, pavardės, el. pašto adreso
+                    ar kitų tiesiogiai asmenį identifikuojančių duomenų.
+                </p>
+                <p>
+                    Testo rezultatai išsaugomi ir naudojami tik apibendrintai
+                    šio mokyklinio projekto statistikai. Svetainėje viešai rodoma
+                    tik bendra visų užpildymų statistika, o ne individualūs atsakymai.
+                </p>
+
+                <label class="consent-label">
+                    <input type="checkbox"
+                           id="consentCheckbox"
+                           onchange="updateConsent()">
+                    <span>
+                        Susipažinau su informacija ir sutinku anonimiškai dalyvauti teste.
+                    </span>
+                </label>
+            </div>
+
+            <button class="button"
+                    id="startQuizButton"
+                    onclick="startQuiz()"
+                    disabled>
+                Pradėti testą
+            </button>
+
+            <p class="test-small">
+                Atsakyk kuo nuoširdžiau. Čia nėra teisingų ar neteisingų atsakymų.
+            </p>
+        </div>
+
+        <!-- KLAUSIMAI -->
+
+        <div id="quizScreen">
+
+            <div class="question-number" id="questionNumber"></div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <h3 class="question-text" id="questionText"></h3>
+
+            <div class="answers" id="answers"></div>
+
+            <div class="quiz-navigation">
+                <button class="nav-button back-button" id="backButton" onclick="previousQuestion()">
+                    Atgal
+                </button>
+
+                <button class="nav-button next-button" id="nextButton" onclick="nextQuestion()" disabled>
+                    Kitas
+                </button>
+            </div>
+
+        </div>
+
+        <!-- REZULTATAS -->
+
+        <div id="resultScreen">
+
+            <p class="section-label">Tavo rezultatas</p>
+
+            <h2 class="result-title" id="resultTitle"></h2>
+
+            <p class="result-summary" id="resultSummary"></p>
+
+            <div class="result-description" id="resultDescription"></div>
+
+            <div class="advice-box">
+                <h3>Ką gali išbandyti?</h3>
+                <ul id="resultAdvice"></ul>
+            </div>
+
+            <div class="profile">
+                <h3>Tavo atsakymų profilis</h3>
+                <div id="profileResults"></div>
+            </div>
+
+            <button class="button" onclick="restartQuiz()">Atlikti testą dar kartą</button>
+
+            <div class="disclaimer">
+                Šis testas skirtas savirefleksijai ir edukaciniams tikslams.
+                Jis nėra diagnostinė psichologinė priemonė.
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</section>
+
+
+<!-- VIEŠA STATISTIKA -->
+
+<section id="statistika">
+    <p class="section-label">08 - Bendri rezultatai</p>
+    <h2>Testo rezultatų statistika</h2>
+
+    <p class="section-intro">
+        Čia pateikiami apibendrinti visų testą užpildžiusių žmonių rezultatai.
+        Individualūs atsakymai viešai nerodomi.
+    </p>
+
+    <div class="panel statistics-summary">
+        <h3>Testas užpildytas</h3>
+        <div class="participant-number" id="participantCount">–</div>
+        <p>kartų</p>
+    </div>
+
+    <div class="panel">
+        <h3 style="text-align:center;">Bendri skalių vidurkiai</h3>
+        <div id="publicAverages">
+            <p class="stats-status">Kraunama statistika...</p>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3 style="text-align:center;">Dažniausiai pasitaikantys profiliai</h3>
+        <div id="publicProfiles">
+            <p class="stats-status">Kraunama statistika...</p>
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        Statistika apskaičiuojama iš anoniminių testo rezultatų ir pateikiama
+        tik apibendrinta forma. Kadangi nerenkami asmens identifikavimo duomenys,
+        rodomas testo užpildymų, o ne unikalių dalyvių skaičius.
+        Ši statistika nėra diagnostinė informacija.
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p><strong>Perfekcionizmo ir prokrastinacijos poveikis akademiniams rezultatams</strong></p>
+    <p>Mokyklinis tyrimo projektas</p>
+</footer>
+
+<script>
+
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxNyFq49lBIdZeAe50qc7rt_IAVrj0xwUfep2AGOVBUSANgn1aMUc3DGLBLynEWiXKk/exec";
+let resultSaved = false;
+
+function updateConsent() {
+    const checkbox = document.getElementById("consentCheckbox");
+    const button = document.getElementById("startQuizButton");
+    button.disabled = !checkbox.checked;
+}
+
+
+/* KLAUSIMAI */
+
+const questions = [
+    "Iš savęs reikalauju labai aukštų rezultatų.",
+    "Man sunku jausti pasitenkinimą savo darbu, jei žinau, kad galėjau jį atlikti geriau.",
+    "Man sunku priimti savo klaidas.",
+    "Net ir geras rezultatas kartais man atrodo nepakankamai geras.",
+    "Jaučiu, kad mano atliktas darbas turi būti beveik nepriekaištingas.",
+
+    "Jaučiu, kad kiti žmonės iš manęs tikisi labai gerų rezultatų.",
+    "Bijau nuvilti žmones, kurie iš manęs daug tikisi.",
+    "Kai suklystu, nerimauju dėl to, ką apie mane pagalvos kiti.",
+    "Jaučiu spaudimą atitikti kitų žmonių lūkesčius.",
+    "Man atrodo, kad turiu pasiekti labai gerų rezultatų, kad kiti mane vertintų.",
+
+    "Mane erzina, kai kiti žmonės neatlieka darbo taip gerai, kaip galėtų.",
+    "Iš kitų žmonių dažnai tikiuosi labai aukštų standartų.",
+    "Man sunku suprasti, kodėl žmogus nepadaro darbo geriau, jei gali tai padaryti.",
+    "Kai kiti žmonės padaro klaidų, kartais jaučiu nusivylimą jais.",
+
+    "Atidedu užduotis, nors žinau, kad vėliau dėl to bus sunkiau.",
+    "Svarbius darbus dažnai pradedu tik tada, kai lieka mažai laiko.",
+    "Vietoj svarbios užduoties dažnai randu kitų dalykų, kuriuos galiu daryti.",
+    "Man sunku pradėti užduotį, net kai turiu pakankamai laiko.",
+    "Kartais laukiu, kol „atsiras tinkama nuotaika“, kad galėčiau pradėti darbą.",
+    "Mano atidėliojimas dažnai sukelia stresą arba kaltės jausmą."
+];
+
+const answerOptions = [
+    { text: "Visiškai nesutinku", value: 1 },
+    { text: "Nesutinku", value: 2 },
+    { text: "Nei sutinku, nei nesutinku", value: 3 },
+    { text: "Sutinku", value: 4 },
+    { text: "Visiškai sutinku", value: 5 }
+];
+
+let currentQuestion = 0;
+let userAnswers = new Array(questions.length).fill(null);
+
+/* TESTO PRADŽIA */
+
+function startQuiz() {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("quizScreen").style.display = "block";
+
+    currentQuestion = 0;
+    resultSaved = false;
+    showQuestion();
+}
+
+/* KLAUSIMO RODYMAS */
+
+function showQuestion() {
+
+    document.getElementById("questionNumber").textContent =
+        (currentQuestion + 1) + " / " + questions.length;
+
+    document.getElementById("questionText").textContent =
+        questions[currentQuestion];
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    const answersContainer =
+        document.getElementById("answers");
+
+    answersContainer.innerHTML = "";
+
+    answerOptions.forEach(option => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer";
+        button.textContent = option.text;
+
+        if (userAnswers[currentQuestion] === option.value) {
+            button.classList.add("selected");
+        }
+
+        button.onclick = function() {
+            selectAnswer(option.value);
+        };
+
+        answersContainer.appendChild(button);
+    });
+
+    document.getElementById("backButton").style.visibility =
+        currentQuestion === 0 ? "hidden" : "visible";
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+    nextButton.disabled =
+        userAnswers[currentQuestion] === null;
+
+    nextButton.textContent =
+        currentQuestion === questions.length - 1
+        ? "Pamatyti rezultatą"
+        : "Kitas";
+}
+
+/* ATSAKYMO PASIRINKIMAS */
+
+function selectAnswer(value) {
+
+    userAnswers[currentQuestion] = value;
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach((button, index) => {
+        button.classList.toggle(
+            "selected",
+            answerOptions[index].value === value
+        );
+    });
+
+    document.getElementById("nextButton").disabled = false;
+}
+
+/* KITAS KLAUSIMAS */
+
+function nextQuestion() {
+
+    if (userAnswers[currentQuestion] === null) {
+        return;
+    }
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+        showQuestion();
+
+    } else {
+
+        calculateResult();
+    }
+}
+
+/* ANKSTESNIS KLAUSIMAS */
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+    }
+}
+
+/* VIDURKIS */
+
+function average(start, end) {
+
+    const values =
+        userAnswers.slice(start, end);
+
+    const total =
+        values.reduce((sum, value) => sum + value, 0);
+
+    return total / values.length;
+}
+
+/* REZULTATO SKAIČIAVIMAS */
+
+function calculateResult() {
+
+    const self = average(0, 5);
+    const social = average(5, 10);
+    const others = average(10, 14);
+    const procrastination = average(14, 20);
+
+    const scores = {
+        self,
+        social,
+        others,
+        procrastination
+    };
+
+    const result = chooseResult(scores);
+
+    if (!resultSaved) {
+        resultSaved = true;
+        saveAnonymousResult(scores, result);
+    }
+
+    showResult(result, scores);
+}
+
+/* REZULTATO PARINKIMAS */
+
+function chooseResult(scores) {
+
+    const self = scores.self;
+    const social = scores.social;
+    const others = scores.others;
+    const procrastination = scores.procrastination;
+
+    const high = 3.8;
+    const low = 2.5;
+
+    /*
+    Pirmiausia tikrinamos svarbios kombinacijos.
+    */
+
+    if (self >= high && social >= high && procrastination >= high) {
+        return results.mixed;
+    }
+
+    if (self >= high && procrastination >= high) {
+        return results.selfProcrastination;
+    }
+
+    if (social >= high && procrastination >= high) {
+        return results.socialProcrastination;
+    }
+
+    const perfectionismHighCount =
+        [self, social, others].filter(score => score >= high).length;
+
+    if (perfectionismHighCount >= 2) {
+        return results.mixed;
+    }
+
+    if (procrastination >= high) {
+        return results.procrastination;
+    }
+
+    if (self >= high) {
+        return results.self;
+    }
+
+    if (social >= high) {
+        return results.social;
+    }
+
+    if (others >= high) {
+        return results.others;
+    }
+
+    if (
+        self < low &&
+        social < low &&
+        others < low &&
+        procrastination < low
+    ) {
+        return results.balanced;
+    }
+
+    /*
+    Jei nėra aiškiai aukšto rezultato,
+    parenkama ryškiausia tendencija.
+    */
+
+    const highest = Math.max(
+        self,
+        social,
+        others,
+        procrastination
+    );
+
+    if (highest === procrastination && procrastination >= 3.2) {
+        return results.procrastination;
+    }
+
+    if (highest === self && self >= 3.2) {
+        return results.self;
+    }
+
+    if (highest === social && social >= 3.2) {
+        return results.social;
+    }
+
+    if (highest === others && others >= 3.2) {
+        return results.others;
+    }
+
+    return results.balanced;
+}
+
+/* VISI GALIMI REZULTATAI */
+
+const results = {
+
+    balanced: {
+        title: "Subalansuotas požiūris į užduotis",
+        summary:
+            "Tavo atsakymai nerodo ryškaus vienos vertinamos tendencijos dominavimo.",
+        description:
+            "Atrodo, kad dažniausiai gebi gana lanksčiai vertinti savo darbo rezultatus ir tavo atsakymuose nėra ryškaus sistemingo svarbių užduočių atidėliojimo. Tai nereiškia, kad niekada nesusiduri su aukštais reikalavimais ar atidėliojimu - skirtingose situacijose tavo elgesys gali skirtis.",
+        advice: [
+            "Toliau kelk sau realistiškus ir pasiekiamus tikslus.",
+            "Dideles užduotis skaidyk į mažesnius etapus.",
+            "Palik pakankamai laiko poilsiui.",
+            "Vertink ne tik galutinį rezultatą, bet ir savo pažangą.",
+            "Kai reikalavimai sau didėja, prisimink, kad gerai atliktas darbas neprivalo būti tobulas."
+        ]
+    },
+
+    self: {
+        title: "Aukšti standartai sau",
+        summary:
+            "Tavo atsakymai rodo polinkį kelti sau labai aukštus standartus.",
+        description:
+            "Tau gali būti svarbu darbą atlikti kuo geriau. Kartais gali būti sunku priimti savo klaidas arba pasitenkinti rezultatu, jei žinai, kad teoriškai galėjai padaryti dar geriau. Aukšti standartai savaime nėra blogas dalykas - jie gali skatinti stengtis ir siekti tikslų. Sunkumų gali atsirasti tada, kai gerai atliktas darbas pradeda atrodyti nepakankamai geras.",
+        advice: [
+            "Prieš pradedant darbą nusistatyk, koks rezultatas bus pakankamai geras.",
+            "Nustatyk konkrečią darbo laiko ribą.",
+            "Paklausk savęs: ar aš dar gerinu rezultatą, ar jau bandau jį padaryti tobulą?",
+            "Vertink ne tik galutinį rezultatą, bet ir įdėtas pastangas bei pažangą.",
+            "Klaidas vertink kaip galimybę suprasti, ką kitą kartą galima padaryti geriau.",
+            "Leisk sau kartais atlikti užduotį tiesiog gerai, o ne nepriekaištingai."
+        ]
+    },
+
+    social: {
+        title: "Kitų lūkesčių spaudimas",
+        summary:
+            "Tavo atsakymai rodo polinkį stipriai atsižvelgti į kitų žmonių lūkesčius.",
+        description:
+            "Tau gali būti svarbu nenuvilti kitų žmonių ir atitikti jų lūkesčius. Kartais gali nerimauti, kaip kiti įvertins tavo rezultatą ar klaidas. Dėl to užduotis gali tapti ne tik darbu, kurį reikia atlikti, bet ir savo gebėjimų ar vertės patikrinimu.",
+        advice: [
+            "Paklausk savęs: ar žmogus tikrai to iš manęs reikalauja, ar aš tik manau, kad jis to reikalauja?",
+            "Atskirk savo tikslus nuo kitų žmonių lūkesčių.",
+            "Primink sau, kad viena klaida neapibrėžia tavo gebėjimų ar vertės.",
+            "Prieš atliekant užduotį pagalvok, ko nori išmokti ar pasiekti.",
+            "Jei bijai neigiamo vertinimo, pagalvok apie realiausią, o ne blogiausią galimą situaciją.",
+            "Atkreipk dėmesį, kada stengiesi dėl savęs, o kada tik dėl kitų pritarimo."
+        ]
+    },
+
+    others: {
+        title: "Aukšti reikalavimai kitiems",
+        summary:
+            "Tavo atsakymai rodo polinkį kelti aukštus standartus kitiems žmonėms.",
+        description:
+            "Tau gali būti svarbu, kad kiti žmonės stengtųsi ir savo darbą atliktų kokybiškai. Todėl gali erzinti situacijos, kai matai, kad žmogus galėjo padaryti geriau, tačiau, tavo nuomone, neįdėjo pakankamai pastangų. Kartais dėl to gali būti sunkiau priimti kitų žmonių klaidas arba kitokį darbo būdą.",
+        advice: [
+            "Prisimink, kad kitaip nebūtinai reiškia blogiau.",
+            "Paklausk savęs: ar rezultatas iš tikrųjų netinkamas, ar jis tiesiog skiriasi nuo to, kaip tai atlikčiau aš?",
+            "Vertink ne tik rezultatą, bet ir žmogaus pastangas bei aplinkybes.",
+            "Grupiniame darbe iš anksto susitarkite dėl bendrų darbo standartų.",
+            "Leisk kitiems atlikti savo darbo dalį jų pasirinktu būdu.",
+            "Prisimink, kad žmonių gebėjimai, darbo tempas ir prioritetai gali skirtis."
+        ]
+    },
+
+    procrastination: {
+        title: "Polinkis atidėlioti",
+        summary:
+            "Tavo atsakymai rodo polinkį atidėlioti svarbias užduotis.",
+        description:
+            "Gali būti, kad svarbias užduotis kartais atidedi, nors žinai, kad vėliau dėl to gali būti sunkiau. Tau gali būti sunku pradėti užduotį, todėl atsiranda kitų, tuo metu patrauklesnių veiklų arba lauki tinkamos nuotaikos. Atidėliojimas gali sukelti papildomą stresą ar kaltės jausmą. Šis rezultatas nereiškia tinginystės - jis tik parodo tavo atsakymuose matomą atidėliojimo tendenciją.",
+        advice: [
+            "Išbandyk 5 minučių taisyklę - nuspręsk dirbti tik 5 minutes. Svarbiausia pradėti.",
+            "Dideles užduotis suskaidyk į mažus ir konkrečius veiksmus.",
+            "Nustatyk ne tik galutinį terminą, bet ir konkretų darbo pradžios laiką.",
+            "Išbandyk 25 minučių darbo ir 5 minučių pertraukos principą.",
+            "Darbo metu pašalink lengviausiai pasiekiamus trukdžius, pavyzdžiui, telefoną.",
+            "Nelauk tinkamos nuotaikos - motyvacija kartais atsiranda jau pradėjus dirbti."
+        ]
+    },
+
+    selfProcrastination: {
+        title: "Nori padaryti puikiai, todėl sunku pradėti",
+        summary:
+            "Tavo atsakymuose kartu matomas polinkis kelti sau aukštus standartus ir atidėlioti užduotis.",
+        description:
+            "Tau gali būti svarbu darbą atlikti labai gerai, tačiau kai kurios užduotys gali atrodyti sunkiau pradedamos. Mintis „turiu padaryti labai gerai“ kartais gali sukelti daugiau įtampos nei paprastesnė mintis „pirmiausia tiesiog pradėsiu“. Šis testas nenustato, kad aukšti standartai sukelia atidėliojimą - jis tik parodo, kad tavo atsakymuose šios dvi tendencijos pasireiškia kartu.",
+        advice: [
+            "Pirmą darbo versiją laikyk juodraščiu, o ne galutiniu rezultatu.",
+            "Vadovaukis principu: pirmiausia padaryta, paskui patobulinta.",
+            "Didelę užduotį sumažink iki vieno 5-10 minučių veiksmo.",
+            "Iš anksto nusistatyk, kada darbas bus pakankamai geras.",
+            "Ribok taisymų skaičių, pavyzdžiui, nuspręsk darbą pataisyti tik du kartus.",
+            "Kai kyla mintis „dar ne laikas pradėti“, pradėk nuo lengviausios užduoties dalies."
+        ]
+    },
+
+    socialProcrastination: {
+        title: "Kitų lūkesčiai ir atidėliojimas",
+        summary:
+            "Tavo atsakymuose matomas ir kitų lūkesčių spaudimas, ir polinkis atidėlioti.",
+        description:
+            "Tau gali būti svarbu, ką apie tavo darbą pagalvos mokytojai, dėstytojai, tėvai, bendrakursiai ar kiti žmonės. Kai rezultatas tampa labai svarbus kitų vertinimui, užduotis gali kelti daugiau įtampos. Tuo pačiu tavo atsakymai rodo polinkį kai kurias svarbias užduotis atidėti. Testas nenustato, kad viena iš šių tendencijų sukelia kitą.",
+        advice: [
+            "Užrašyk, ko iš tavęs iš tikrųjų reikalauja konkreti užduotis.",
+            "Atskirai pagalvok, ko, tavo manymu, iš tavęs tikisi kiti, ir ar turi tam realių įrodymų.",
+            "Stenkis koncentruotis į pačią užduotį, o ne į būsimą kitų žmonių vertinimą.",
+            "Leisk sau pateikti gerą darbą, net jei jis nėra nepriekaištingas.",
+            "Pradėk nuo mažos užduoties dalies, kurios dar niekam nereikia rodyti.",
+            "Baigus darbą pirmiausia verta paklausti: ką jau padariau? Tik tada pagalvoti, ką dar galima pagerinti."
+        ]
+    },
+
+    mixed: {
+        title: "Mišrus aukštų standartų profilis",
+        summary:
+            "Tavo atsakymai rodo kelias ryškesnes tendencijas vienu metu.",
+        description:
+            "Aukšti standartai tavo atsakymuose pasireiškia keliais būdais. Gali daug reikalauti iš savęs, stipriai atsižvelgti į kitų žmonių lūkesčius ir/arba kelti aukštus reikalavimus kitiems. Gali būti ryškesnis ir užduočių atidėliojimas. Siekti kokybės gali būti naudinga, tačiau verta stebėti, kada aukšti standartai padeda siekti tikslų, o kada pradeda kelti nereikalingą įtampą.",
+        advice: [
+            "Mokykis atskirti aukštą kokybę nuo tobulumo.",
+            "Kiekvienai svarbiai užduočiai iš anksto nustatyk pakankamai gero rezultato kriterijų.",
+            "Paklausk savęs, kieno standartą šiuo metu bandai atitikti - savo ar kitų.",
+            "Sąmoningai mokykis toleruoti nedideles savo ir kitų klaidas.",
+            "Sudėtingoms užduotims nustatyk konkrečias laiko ribas.",
+            "Vertink savo ir kitų pažangą, o ne tik galutinį rezultatą."
+        ]
+    }
+};
+
+/* REZULTATO PARODYMAS */
+
+function showResult(result, scores) {
+
+    document.getElementById("quizScreen").style.display = "none";
+    document.getElementById("resultScreen").style.display = "block";
+
+    document.getElementById("resultTitle").textContent =
+        result.title;
+
+    document.getElementById("resultSummary").textContent =
+        result.summary;
+
+    document.getElementById("resultDescription").textContent =
+        result.description;
+
+    const adviceList =
+        document.getElementById("resultAdvice");
+
+    adviceList.innerHTML = "";
+
+    result.advice.forEach(advice => {
+
+        const li = document.createElement("li");
+        li.textContent = advice;
+        adviceList.appendChild(li);
+    });
+
+    showProfile(scores);
+
+    document.getElementById("testas").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+/* PROFILIO JUOSTOS */
+
+function showProfile(scores) {
+
+    const profile =
+        document.getElementById("profileResults");
+
+    profile.innerHTML = "";
+
+    const categories = [
+        {
+            name: "Aukšti standartai sau",
+            score: scores.self
+        },
+        {
+            name: "Kitų lūkesčių spaudimas",
+            score: scores.social
+        },
+        {
+            name: "Aukšti reikalavimai kitiems",
+            score: scores.others
+        },
+        {
+            name: "Polinkis atidėlioti",
+            score: scores.procrastination
+        }
+    ];
+
+    categories.forEach(category => {
+
+        const percentage =
+            (category.score / 5) * 100;
+
+        const item =
+            document.createElement("div");
+
+        item.className = "profile-item";
+
+        item.innerHTML = `
+            <div class="profile-header">
+                <span>${category.name}</span>
+                <span>${category.score.toFixed(1)} / 5</span>
+            </div>
+
+            <div class="profile-track">
+                <div class="profile-fill"
+                     style="width:${percentage}%;">
+                </div>
+            </div>
+        `;
+
+        profile.appendChild(item);
+    });
+}
+
+/* TESTĄ PRADĖTI IŠ NAUJO */
+
+function restartQuiz() {
+
+    userAnswers =
+        new Array(questions.length).fill(null);
+
+    currentQuestion = 0;
+    resultSaved = false;
+
+    document.getElementById("consentCheckbox").checked = false;
+    updateConsent();
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("startScreen").style.display =
+        "block";
+
+    document.getElementById("testas").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+
+/* ANONIMINIO REZULTATO IŠSAUGOJIMAS */
+
+async function saveAnonymousResult(scores, result) {
+    try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                self: scores.self,
+                social: scores.social,
+                others: scores.others,
+                procrastination: scores.procrastination,
+                result: result.title
+            })
+        });
+
+        setTimeout(loadPublicStatistics, 800);
+
+    } catch (error) {
+        console.error("Nepavyko išsaugoti anoniminio rezultato:", error);
+    }
+}
+
+
+/* VIEŠOS STATISTIKOS ĮKĖLIMAS */
+
+async function loadPublicStatistics() {
+    const countElement = document.getElementById("participantCount");
+    const averagesContainer = document.getElementById("publicAverages");
+    const profilesContainer = document.getElementById("publicProfiles");
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL);
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.error || "Nepavyko gauti statistikos.");
+        }
+
+        countElement.textContent = data.count;
+
+        if (data.count === 0) {
+            averagesContainer.innerHTML =
+                '<p class="stats-status">Kol kas nėra surinktų rezultatų.</p>';
+
+            profilesContainer.innerHTML =
+                '<p class="stats-status">Kol kas nėra surinktų rezultatų.</p>';
+
+            return;
+        }
+
+        const categories = [
+            {
+                name: "Aukšti standartai sau",
+                value: Number(data.averages.self)
+            },
+            {
+                name: "Kitų lūkesčių spaudimas",
+                value: Number(data.averages.social)
+            },
+            {
+                name: "Aukšti reikalavimai kitiems",
+                value: Number(data.averages.others)
+            },
+            {
+                name: "Polinkis atidėlioti",
+                value: Number(data.averages.procrastination)
+            }
+        ];
+
+        averagesContainer.innerHTML = "";
+
+        categories.forEach(category => {
+            const percentage = Math.max(
+                0,
+                Math.min(100, (category.value / 5) * 100)
+            );
+
+            averagesContainer.innerHTML += `
+                <div class="public-stat-item">
+                    <div class="public-stat-header">
+                        <span>${category.name}</span>
+                        <span>${category.value.toFixed(1)} / 5</span>
+                    </div>
+
+                    <div class="public-stat-track">
+                        <div class="public-stat-fill"
+                             style="width:${percentage}%;">
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        profilesContainer.innerHTML = "";
+
+        const sortedProfiles =
+            Object.entries(data.results || {})
+                  .sort((a, b) => b[1] - a[1]);
+
+        if (sortedProfiles.length === 0) {
+            profilesContainer.innerHTML =
+                '<p class="stats-status">Kol kas nėra profilių duomenų.</p>';
+        } else {
+            sortedProfiles.forEach(([name, amount]) => {
+                const percentage =
+                    (Number(amount) / Number(data.count)) * 100;
+
+                profilesContainer.innerHTML += `
+                    <div class="profile-stat-row">
+                        <span>${name}</span>
+                        <span class="profile-percentage">
+                            ${percentage.toFixed(1)} %
+                        </span>
+                    </div>
+                `;
+            });
+        }
+
+    } catch (error) {
+        console.error("Statistikos įkėlimo klaida:", error);
+
+        countElement.textContent = "–";
+
+        averagesContainer.innerHTML =
+            '<p class="stats-status">Nepavyko įkelti statistikos.</p>';
+
+        profilesContainer.innerHTML =
+            '<p class="stats-status">Nepavyko įkelti statistikos.</p>';
+    }
+}
+
+loadPublicStatistics();
+
+
+</script>
+
+</body>
+</html>
